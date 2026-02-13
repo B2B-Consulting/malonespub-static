@@ -1,0 +1,18 @@
+{
+  "sourceLabel": "Yelp",
+  "rating": 4.2,
+  "reviewCount": 190,
+  "yelpUrl": "https://www.yelp.com/",
+  "highlights": [
+    {
+      "name": "Yelp user",
+      "quote": "Great downtown spot — friendly bartenders and good atmosphere.",
+      "detail": "★★★★★"
+    },
+    {
+      "name": "Yelp user",
+      "quote": "Fun place for games and late nights. Would come back.",
+      "detail": "★★★★★"
+    }
+  ]
+}

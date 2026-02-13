@@ -1,0 +1,22 @@
+{
+  "sourceLabel": "Google",
+  "rating": 4.5,
+  "reviewCount": 356,
+  "highlights": [
+    {
+      "name": "Local Guide",
+      "quote": "Classic downtown pub vibe — great drinks and friendly staff.",
+      "detail": "★★★★★"
+    },
+    {
+      "name": "Regular",
+      "quote": "Perfect spot for pool and pinball. Always a good time.",
+      "detail": "★★★★★"
+    },
+    {
+      "name": "First timer",
+      "quote": "Came in for one and stayed for three. We’ll be back.",
+      "detail": "★★★★★"
+    }
+  ]
+}

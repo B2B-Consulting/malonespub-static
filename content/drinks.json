@@ -1,0 +1,18 @@
+{
+  "draft": [
+    { "name": "Miller Lite", "price": "" },
+    { "name": "Coors Light", "price": "" }
+  ],
+  "bottles": [
+    { "name": "Bud Light", "price": "" },
+    { "name": "Michelob Ultra", "price": "" }
+  ],
+  "wine": [
+    { "name": "House Red", "price": "" },
+    { "name": "House White", "price": "" }
+  ],
+  "notes": [
+    "Prices and availability subject to change.",
+    "Ask about seasonal drafts."
+  ]
+}
