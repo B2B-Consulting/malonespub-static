@@ -11,10 +11,10 @@ export default function MenuPage() {
     <>
       <Section title="Malone’s Pub Menu">
         <p className="mb-6 text-neutral-400">
-          Malone’s Pub is a locally owned Irish pub and neighborhood dive bar
-          in downtown Fort Worth near Sundance Square. Enjoy draft beer,
-          Guinness, craft bottles, domestic favorites, imports, wine, and simple
-          bar bites.
+          Malone’s Pub is a locally owned Irish pub and neighborhood dive bar in
+          downtown Fort Worth near Sundance Square. Enjoy draft beer, Guinness,
+          craft bottles, domestic favorites, imports, wine, and simple bar
+          bites.
         </p>
       </Section>
 
@@ -27,6 +27,10 @@ export default function MenuPage() {
             "Shiner Bock",
           ]}
         />
+      </Section>
+
+      <Section title="Non-Alcoholic">
+        <MenuList items={["Guinness 0.0", "Heineken 0.0", "Athletic Brewing"]} />
       </Section>
 
       <Section title="Domestic Bottles">
@@ -109,6 +113,9 @@ export default function MenuPage() {
             "Austin Eastciders Seasonal Cider",
             "High Noon Peach",
             "High Noon Watermelon",
+            "High Noon Pineapple",
+            "Coco Vodka Pineapple",
+            "Lone River Ranch Water",
             "Strongbow Dry Cider",
             "Topo Chico Strawberry Guava",
           ]}
@@ -130,9 +137,10 @@ export default function MenuPage() {
         <MenuList
           items={[
             "Barefoot Chardonnay",
-            "Chateau Ste Michelle Riesling",
+            "Chateau Ste. Michelle Riesling",
             "Ecco Domani Pinot Grigio",
             "Shannon Ridge Chardonnay",
+            "Oyster Bay Sauvignon Blanc",
           ]}
         />
       </Section>
@@ -165,9 +173,5 @@ function MenuList({ items }: { items: string[] }) {
 }
 
 function MenuSubheading({ title }: { title: string }) {
-  return (
-    <h3 className="mt-6 mb-3 text-lg font-semibold text-white">
-      {title}
-    </h3>
-  );
+  return <h3 className="mt-6 mb-3 text-lg font-semibold text-white">{title}</h3>;
 }
