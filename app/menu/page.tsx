@@ -30,7 +30,7 @@ export default function MenuPage() {
       </Section>
 
       <Section title="Non-Alcoholic">
-        <MenuList items={["Guinness 0.0", "Heineken 0.0", "Athletic Brewing"]} />
+        <MenuList items={["Guinness 0.5", "Heineken 0.0", "Athletic Brewing 0.5"]} />
       </Section>
 
       <Section title="Domestic Bottles">
@@ -61,7 +61,6 @@ export default function MenuPage() {
             "Dale’s Pale Ale",
             "Deep Ellum IPA",
             "Heineken",
-            "Heineken 0.0",
             "Hoegaarden",
             "Labatt Blue",
             "Martin House Friday IPA",
@@ -128,6 +127,7 @@ export default function MenuPage() {
           items={[
             "Barefoot Cabernet",
             "Barefoot Merlot",
+            "Barefoot Pinot Noir",
             "Josh Rosé",
             "Whispering Angel Rosé",
           ]}
@@ -139,6 +139,7 @@ export default function MenuPage() {
             "Barefoot Chardonnay",
             "Chateau Ste. Michelle Riesling",
             "Ecco Domani Pinot Grigio",
+            "Ruffino Prosecco",
             "Shannon Ridge Chardonnay",
             "Oyster Bay Sauvignon Blanc",
           ]}
