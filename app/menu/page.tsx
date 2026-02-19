@@ -67,7 +67,7 @@ export default function MenuPage() {
             "Martin House True Love",
             "Modelo Especial",
             "Molson Canadian",
-            "Negro Modelo",
+            "Negra Modelo",
             "Old Chub Scotch Ale",
             "Pacifico",
             "Paulaner Hefe-Weizen",
