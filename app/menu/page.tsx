@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import FaqSchema from "@/components/FaqSchema";
 import Section from "@/components/Section";
 
 export const metadata: Metadata = {
@@ -6,10 +7,32 @@ export const metadata: Metadata = {
   description:
     "View the menu at Malone’s Pub — an Irish pub and neighborhood dive bar in Downtown Fort Worth (76102) near Sundance Square. Draft beer, Guinness, imports, wine, non-alcoholic options, and bar bites. Pool, darts, Golden Tee, and pinball.",
 };
-
+const faqs = [
+  {
+    question: "Is Malone’s Pub an Irish pub in Downtown Fort Worth?",
+    answer:
+      "Yes — Malone’s Pub is a long-running Irish pub and neighborhood dive bar located in Downtown Fort Worth near Sundance Square (76102).",
+  },
+  {
+    question: "Do you have darts and Golden Tee?",
+    answer:
+      "Yes — Malone’s has darts and Golden Tee along with other games inside.",
+  },
+  {
+    question: "Do you serve bar food?",
+    answer:
+      "Yes — we offer simple bar bites. Availability can vary, so ask your bartender.",
+  },
+  {
+    question: "Is there parking?",
+    answer: "Yes — free street parking is available nearby.",
+  },
+];
 export default function MenuPage() {
   return (
     <>
+      <FaqSchema faqs={faqs} />
+      
       <Section title="Malone’s Pub Menu">
         <p className="mb-4 text-neutral-400">
           Malone’s Pub is an <strong>Irish pub</strong> and neighborhood{" "}

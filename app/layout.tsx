@@ -1,4 +1,5 @@
 import "./globals.css";
+import Script from "next/script";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import MobileStickyBar from "@/components/MobileStickyBar";
@@ -96,6 +97,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      {/* Google Analytics */}
+<Script
+  src={`https://www.googletagmanager.com/gtag/js?id=G-89XCC9JFW5`}
+  strategy="afterInteractive"
+/>
+<Script id="google-analytics" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-89XCC9JFW5');
+  `}
+</Script>
       <body className="min-h-screen bg-neutral-950 text-neutral-100">
         <Nav />
         <main className="pb-24 md:pb-0">{children}</main>

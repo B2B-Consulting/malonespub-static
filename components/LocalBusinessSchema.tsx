@@ -1,7 +1,21 @@
 import site from "@/content/site.json";
+import ratings from "@/content/ratings.json";
 
 export default function LocalBusinessSchema({ siteUrl }: { siteUrl: string }) {
-  const jsonLd = {
+  const ratingValue =
+    typeof ratings.rating === "number" ? ratings.rating : Number(ratings.rating);
+  const reviewCount =
+    typeof ratings.reviewCount === "number"
+      ? ratings.reviewCount
+      : Number(ratings.reviewCount);
+
+  const hasValidRating =
+    Number.isFinite(ratingValue) &&
+    Number.isFinite(reviewCount) &&
+    ratingValue > 0 &&
+    reviewCount > 0;
+
+  const jsonLd: any = {
     "@context": "https://schema.org",
     "@type": "BarOrPub",
     name: site.name,
@@ -29,12 +43,19 @@ export default function LocalBusinessSchema({ siteUrl }: { siteUrl: string }) {
       { "@type": "LocationFeatureSpecification", name: "Free street parking", value: true },
     ],
     sameAs: [
+      site.googleMapsUrl, // your Maps share link (maps.app.goo.gl/...)
       site.instagramUrl,
-      // You can add Yelp / Facebook later if you want:
-      // "https://www.yelp.com/biz/...",
-      // "https://www.facebook.com/..."
     ].filter(Boolean),
   };
+
+  // Add AggregateRating ONLY if numbers are valid
+  if (hasValidRating) {
+    jsonLd.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: Number(ratingValue.toFixed(1)),
+      reviewCount: Math.round(reviewCount),
+    };
+  }
 
   return (
     <script
