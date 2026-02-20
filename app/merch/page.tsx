@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Section from "@/components/Section";
+
+export const metadata: Metadata = {
+  title: "Merch",
+  description:
+    "Malone’s Pub merchandise is coming soon. Follow Malone’s Pub in Downtown Fort Worth for updates.",
+};
 
 export default function MerchPage() {
   return (

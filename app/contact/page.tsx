@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import Section from "@/components/Section";
 import Card from "@/components/Card";
 import ButtonLink from "@/components/ButtonLink";
 import site from "@/content/site.json";
 import { formatHoursLines } from "@/lib/hours";
+
+export const metadata: Metadata = {
+  title: "Contact & Hours",
+  description:
+    "Contact Malone’s Pub in Downtown Fort Worth (76102) near Sundance Square. Free street parking, pool tables, darts, Golden Tee, pinball, and bar food.",
+};
 
 export default function ContactPage() {
   const hoursLines = formatHoursLines(site.hours as any);
@@ -36,7 +43,9 @@ export default function ContactPage() {
             </ButtonLink>
           </div>
 
-          <div className="mt-6 text-xs text-neutral-500">Parking in back.</div>
+          <div className="mt-6 text-xs text-neutral-500">
+            Free street parking available.
+          </div>
         </Card>
 
         <Card>
@@ -58,5 +67,3 @@ export default function ContactPage() {
     </Section>
   );
 }
-
-

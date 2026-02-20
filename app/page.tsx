@@ -3,9 +3,6 @@ import Section from "@/components/Section";
 import ButtonLink from "@/components/ButtonLink";
 import OpenStatus from "@/components/OpenStatus";
 import Ratings from "@/components/Ratings";
-import YelpRatings from "@/components/YelpRatings";
-
-
 import site from "@/content/site.json";
 
 export default function Home() {
@@ -16,7 +13,7 @@ export default function Home() {
         <div className="relative h-[600px] w-full overflow-hidden">
           <Image
             src="/photos/hero.webp"
-            alt="Malone’s Pub exterior"
+            alt="Malone’s Pub exterior sign in Downtown Fort Worth"
             fill
             priority
             className="object-cover object-top scale-105"
@@ -30,7 +27,7 @@ export default function Home() {
             </h1>
 
             <p className="mt-5 max-w-2xl text-xl text-neutral-300 md:text-2xl">
-              Downtown Fort Worth’s longest-running neighborhood pub.
+              Downtown Fort Worth’s longest-running Irish pub and neighborhood dive bar.
             </p>
 
             <div className="mt-4 h-px w-16 bg-neutral-500 mx-auto" />
@@ -55,14 +52,23 @@ export default function Home() {
             </div>
 
             <div className="mt-5 text-xs text-neutral-300/80">
-              Free street parking • Dog friendly • Pool • Pinball • Darts
+              Free street parking • Pool • Darts • Golden Tee • Pinball • Bar food
             </div>
           </div>
         </div>
       </div>
 
-      {/* RATINGS (high ROI) */}
+      {/* RATINGS */}
       <Ratings />
+
+      {/* SEO SUPPORT COPY (high ROI, not spammy) */}
+      <Section>
+        <p className="mx-auto max-w-3xl text-center text-neutral-400">
+          Located in the heart of <strong>Downtown Fort Worth</strong> near <strong>Sundance Square</strong>,
+          Malone’s Pub is a local staple for cold drinks, darts, Golden Tee, and bar food. If you’re looking
+          for an Irish pub or dive bar in Fort Worth (76102), you’ll feel right at home at Malone’s.
+        </p>
+      </Section>
 
       {/* WHY MALONE'S */}
       <Section>
@@ -75,16 +81,16 @@ export default function Home() {
           </div>
 
           <div>
-            <div className="text-3xl font-bold">Good Games</div>
+            <div className="text-3xl font-bold">Games</div>
             <p className="mt-3 text-neutral-400">
-              Pool, pinball, darts and a jukebox that actually works.
+              Pool, darts, Golden Tee, pinball, and a jukebox that actually works.
             </p>
           </div>
 
           <div>
-            <div className="text-3xl font-bold">Real Atmosphere</div>
+            <div className="text-3xl font-bold">Downtown Location</div>
             <p className="mt-3 text-neutral-400">
-              Free street parking. Patio out back. Downtown energy.
+              Free street parking and a laid-back neighborhood vibe in Downtown Fort Worth.
             </p>
           </div>
         </div>
@@ -92,4 +98,3 @@ export default function Home() {
     </>
   );
 }
-

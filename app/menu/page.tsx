@@ -1,20 +1,26 @@
+import type { Metadata } from "next";
 import Section from "@/components/Section";
 
-export const metadata = {
-  title: "Drink Menu | Malone’s Pub Fort Worth",
+export const metadata: Metadata = {
+  title: "Menu | Malone’s Pub — Irish Pub & Dive Bar in Downtown Fort Worth",
   description:
-    "View the full drink menu at Malone’s Pub in downtown Fort Worth. Draft beer, Guinness, craft bottles, imports, wine, and bar bites near Sundance Square.",
+    "View the menu at Malone’s Pub — an Irish pub and neighborhood dive bar in Downtown Fort Worth (76102) near Sundance Square. Draft beer, Guinness, imports, wine, non-alcoholic options, and bar bites. Pool, darts, Golden Tee, and pinball.",
 };
 
 export default function MenuPage() {
   return (
     <>
       <Section title="Malone’s Pub Menu">
-        <p className="mb-6 text-neutral-400">
-          Malone’s Pub is a locally owned Irish pub and neighborhood dive bar in
-          downtown Fort Worth near Sundance Square. Enjoy draft beer, Guinness,
-          craft bottles, domestic favorites, imports, wine, and simple bar
-          bites.
+        <p className="mb-4 text-neutral-400">
+          Malone’s Pub is an <strong>Irish pub</strong> and neighborhood{" "}
+          <strong>dive bar</strong> in <strong>Downtown Fort Worth</strong>{" "}
+          near <strong>Sundance Square</strong> (76102). We’ve got cold draft
+          beer, Guinness, imports, wine, non-alcoholic options, and simple bar
+          bites — plus games like <strong>darts</strong> and <strong>Golden Tee</strong>.
+        </p>
+
+        <p className="text-sm text-neutral-500">
+          Menu items can change. Ask the bartender about current availability.
         </p>
       </Section>
 
@@ -157,6 +163,28 @@ export default function MenuPage() {
           ]}
         />
       </Section>
+
+      {/* FAQ (High ROI SEO) */}
+      <Section title="FAQ">
+        <div className="space-y-6 text-neutral-300">
+          <FaqItem
+            q="Is Malone’s Pub an Irish pub in Downtown Fort Worth?"
+            a="Yes — Malone’s Pub is a long-running Irish pub and neighborhood dive bar located in Downtown Fort Worth near Sundance Square."
+          />
+          <FaqItem
+            q="Do you have darts and Golden Tee?"
+            a="Yes — you’ll find darts and Golden Tee along with other games inside."
+          />
+          <FaqItem
+            q="Do you serve bar food?"
+            a="Yes — we offer simple bar bites. Availability can vary, so ask your bartender."
+          />
+          <FaqItem
+            q="Is there parking?"
+            a="Yes — free street parking is available nearby."
+          />
+        </div>
+      </Section>
     </>
   );
 }
@@ -175,4 +203,13 @@ function MenuList({ items }: { items: string[] }) {
 
 function MenuSubheading({ title }: { title: string }) {
   return <h3 className="mt-6 mb-3 text-lg font-semibold text-white">{title}</h3>;
+}
+
+function FaqItem({ q, a }: { q: string; a: string }) {
+  return (
+    <div>
+      <div className="font-semibold text-white">{q}</div>
+      <div className="mt-2 text-neutral-400">{a}</div>
+    </div>
+  );
 }
