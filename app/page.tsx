@@ -76,7 +76,7 @@ export default function Home() {
           <div>
             <div className="text-3xl font-bold">Cold Drinks</div>
             <p className="mt-3 text-neutral-400">
-              Strong pours. Ice cold beer. No fluff.
+              Strong pours. Ice cold beer. 
             </p>
           </div>
 

@@ -69,7 +69,7 @@ export default function Ratings() {
           </div>
 
           <div className="mt-4 text-xs text-neutral-500">
-            Social proof matters — reviews help people find us.
+        
           </div>
         </Card>
 

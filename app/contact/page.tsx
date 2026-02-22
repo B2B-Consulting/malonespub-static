@@ -51,12 +51,11 @@ export default function ContactPage() {
         <Card>
           <div className="text-lg font-semibold">Email</div>
           <div className="mt-2 text-neutral-400">
-            For now this is a simple email link (static, no backend).
           </div>
 
           <div className="mt-5">
             <ButtonLink
-              href={`mailto:info@malonespub.com?subject=Malone%E2%80%99s%20Pub%20Question&body=Hey%20Malone%E2%80%99s%20team%2C%0A%0A`}
+              href={`mailto:brian@b2bconsulting.com?subject=Malone%E2%80%99s%20Pub%20Question&body=Hey%20Malone%E2%80%99s%20team%2C%0A%0A`}
               external
             >
               Email us
