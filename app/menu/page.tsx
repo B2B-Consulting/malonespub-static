@@ -1,52 +1,39 @@
-import type { Metadata } from "next";
-import FaqSchema from "@/components/FaqSchema";
 import Section from "@/components/Section";
 
-export const metadata: Metadata = {
-  title: "Menu | Malone’s Pub — Irish Pub & Dive Bar in Downtown Fort Worth",
+export const metadata = {
+  title: "Drink Menu | Malone’s Pub Fort Worth",
   description:
-    "View the menu at Malone’s Pub — an Irish pub and neighborhood dive bar in Downtown Fort Worth (76102) near Sundance Square. Draft beer, Guinness, imports, wine, non-alcoholic options, and bar bites. Pool, darts, Golden Tee, and pinball.",
+    "View the full drink menu at Malone’s Pub in downtown Fort Worth. Draft beer, Guinness, craft bottles, imports, wine, and bar bites near Sundance Square.",
 };
-const faqs = [
-  {
-    question: "Is Malone’s Pub an Irish pub in Downtown Fort Worth?",
-    answer:
-      "Yes — Malone’s Pub is a long-running Irish pub and neighborhood dive bar located in Downtown Fort Worth near Sundance Square (76102).",
-  },
-  {
-    question: "Do you have darts and Golden Tee?",
-    answer:
-      "Yes — Malone’s has darts and Golden Tee along with other games inside.",
-  },
-  {
-    question: "Do you serve bar food?",
-    answer:
-      "Yes — we offer simple bar bites. Availability can vary, so ask your bartender.",
-  },
-  {
-    question: "Is there parking?",
-    answer: "Yes — free street parking is available nearby.",
-  },
-];
+
 export default function MenuPage() {
   return (
     <>
-      <FaqSchema faqs={faqs} />
-      
-      <Section title="Malone’s Pub Menu">
-        <p className="mb-4 text-neutral-400">
-          Malone’s Pub is an <strong>Irish pub</strong> and neighborhood{" "}
-          <strong>dive bar</strong> in <strong>Downtown Fort Worth</strong>{" "}
-          near <strong>Sundance Square</strong> (76102). We’ve got cold draft
-          beer, Guinness, imports, wine, non-alcoholic options, and simple bar
-          bites — plus games like <strong>darts</strong> and <strong>Golden Tee</strong>.
-        </p>
+      {/* HERO BACKGROUND SECTION */}
+      <div className="relative h-[400px] w-full overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/images/bar-back.jpg')",
+          }}
+        />
+        <div className="absolute inset-0 bg-black/60" />
 
-        <p className="text-sm text-neutral-500">
-          Menu items can change. Ask the bartender about current availability.
-        </p>
-      </Section>
+        <div className="relative z-10 flex h-full items-center justify-center text-center px-4">
+          <div>
+            <h1 className="text-4xl md:text-5xl font-bold text-white">
+              Malone’s Pub Menu
+            </h1>
+            <p className="mt-4 text-neutral-200 max-w-2xl mx-auto">
+              In addition to our full selection of liquor, spirits, and
+              handcrafted mixed drinks, Malone’s Pub offers draft beer,
+              imported favorites, craft bottles, wine, and classic bar bites.
+            </p>
+          </div>
+        </div>
+      </div>
 
+      {/* MENU CONTENT */}
       <Section title="Draft Beers">
         <MenuList
           items={[
@@ -59,7 +46,7 @@ export default function MenuPage() {
       </Section>
 
       <Section title="Non-Alcoholic">
-        <MenuList items={["Guinness 0.5", "Heineken 0.0", "Athletic Brewing 0.5"]} />
+        <MenuList items={["Guinness 0.0", "Heineken 0.0", "Athletic Brewing"]} />
       </Section>
 
       <Section title="Domestic Bottles">
@@ -90,13 +77,14 @@ export default function MenuPage() {
             "Dale’s Pale Ale",
             "Deep Ellum IPA",
             "Heineken",
+            "Heineken 0.0",
             "Hoegaarden",
             "Labatt Blue",
             "Martin House Friday IPA",
             "Martin House True Love",
             "Modelo Especial",
             "Molson Canadian",
-            "Negra Modelo",
+            "Negro Modelo",
             "Old Chub Scotch Ale",
             "Pacifico",
             "Paulaner Hefe-Weizen",
@@ -156,7 +144,6 @@ export default function MenuPage() {
           items={[
             "Barefoot Cabernet",
             "Barefoot Merlot",
-            "Barefoot Pinot Noir",
             "Josh Rosé",
             "Whispering Angel Rosé",
           ]}
@@ -168,7 +155,6 @@ export default function MenuPage() {
             "Barefoot Chardonnay",
             "Chateau Ste. Michelle Riesling",
             "Ecco Domani Pinot Grigio",
-            "Ruffino Prosecco",
             "Shannon Ridge Chardonnay",
             "Oyster Bay Sauvignon Blanc",
           ]}
@@ -185,28 +171,6 @@ export default function MenuPage() {
             "Nuts",
           ]}
         />
-      </Section>
-
-      {/* FAQ (High ROI SEO) */}
-      <Section title="FAQ">
-        <div className="space-y-6 text-neutral-300">
-          <FaqItem
-            q="Is Malone’s Pub an Irish pub in Downtown Fort Worth?"
-            a="Yes — Malone’s Pub is a long-running Irish pub and neighborhood dive bar located in Downtown Fort Worth near Sundance Square."
-          />
-          <FaqItem
-            q="Do you have darts and Golden Tee?"
-            a="Yes — you’ll find darts and Golden Tee along with other games inside."
-          />
-          <FaqItem
-            q="Do you serve bar food?"
-            a="Yes — we offer simple bar bites. Availability can vary, so ask your bartender."
-          />
-          <FaqItem
-            q="Is there parking?"
-            a="Yes — free street parking is available nearby."
-          />
-        </div>
       </Section>
     </>
   );
@@ -226,13 +190,4 @@ function MenuList({ items }: { items: string[] }) {
 
 function MenuSubheading({ title }: { title: string }) {
   return <h3 className="mt-6 mb-3 text-lg font-semibold text-white">{title}</h3>;
-}
-
-function FaqItem({ q, a }: { q: string; a: string }) {
-  return (
-    <div>
-      <div className="font-semibold text-white">{q}</div>
-      <div className="mt-2 text-neutral-400">{a}</div>
-    </div>
-  );
 }
