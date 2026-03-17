@@ -3,5 +3,21 @@
   { "src": "/photos/bar.webp", "alt": "Behind the bar" },
   { "src": "/photos/patio.webp", "alt": "Patio / outside" },
   { "src": "/photos/specials.webp", "alt": "Specials board" },
-  { "src": "/photos/inside.webp", "alt": "Inside Malone’s" }
+  { "src": "/photos/inside.webp", "alt": "Inside Malone’s" },
+  {
+    "src": "/photos/pga-golden-tee.jpg",
+    "alt": "Golden Tee machine at Malone’s Pub in Downtown Fort Worth"
+  },
+  {
+    "src": "/photos/bar-dart-boards.jpg",
+    "alt": "Dart boards inside Malone’s Pub Fort Worth"
+  },
+  {
+    "src": "/photos/bar-pool-table.jpg",
+    "alt": "Pool table at Malone’s Pub in Downtown Fort Worth"
+  },
+  {
+    "src": "/photos/big-lebowski-inball.jpg",
+    "alt": "Big Lebowski pinball machine at Malone’s Pub"
+  }
 ]
