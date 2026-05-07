@@ -4,7 +4,7 @@ import Section from "@/components/Section";
 export const metadata: Metadata = {
   title: "Merch",
   description:
-    "Malone’s Pub merchandise is coming soon. Follow Malone’s Pub in Downtown Fort Worth for updates.",
+    "Malone's Pub merchandise is coming soon. Follow Malone's Pub in Downtown Fort Worth for updates.",
 };
 
 export default function MerchPage() {
@@ -16,11 +16,10 @@ export default function MerchPage() {
             Merchandise Coming Soon
           </h2>
           <p className="mt-4 text-neutral-400">
-            Malone’s gear is on the way. Stay tuned.
+            Malone&apos;s gear is on the way. Stay tuned.
           </p>
         </div>
       </div>
     </Section>
   );
 }
-

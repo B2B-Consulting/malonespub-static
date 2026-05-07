@@ -1,6 +1,6 @@
 {
-  "name": "Malone’s Pub",
-  "tagline": "Downtown Fort Worth • Cold Drinks • Good Games",
+  "name": "Malone's Pub",
+  "tagline": "Downtown Fort Worth - Cold Drinks - Good Games",
   "address": "1303 Calhoun St, Fort Worth, TX 76102",
   "phone": "(817) 332-5330",
   "features": [
@@ -11,7 +11,6 @@
     "Jukebox",
     "Dog friendly",
     "Free street parking"
-
   ],
   "googleMapsUrl": "https://www.google.com/maps?q=1303+Calhoun+St,+Fort+Worth,+TX+76102",
   "instagramUrl": "https://www.instagram.com/malonespubfw/",

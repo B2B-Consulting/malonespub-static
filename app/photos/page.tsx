@@ -6,7 +6,7 @@ import photos from "@/content/photos.json";
 export const metadata: Metadata = {
   title: "Photos",
   description:
-    "Photos of Malone’s Pub — a Downtown Fort Worth Irish pub and neighborhood dive bar near Sundance Square.",
+    "Photos of Malone's Pub, a Downtown Fort Worth Irish pub and neighborhood dive bar near Sundance Square with pool, darts, Golden Tee, pinball, and bar food.",
 };
 
 export default function PhotosPage() {
@@ -16,7 +16,7 @@ export default function PhotosPage() {
         {photos.map((p) => (
           <div
             key={p.src}
-            className="overflow-hidden rounded-2xl border border-neutral-900 bg-neutral-900/20"
+            className="overflow-hidden rounded-lg border border-neutral-900 bg-neutral-900/20"
           >
             <Image
               src={p.src}

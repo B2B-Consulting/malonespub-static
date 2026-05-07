@@ -1,8 +1,9 @@
-type Hours = Record<string, { open: string; close: string }>;
+type DayKey = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
+export type Hours = Record<DayKey, { open: string; close: string }>;
 
-const order = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] as const;
+const order: DayKey[] = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
-const dayLabel: Record<(typeof order)[number], string> = {
+const dayLabel: Record<DayKey, string> = {
   mon: "Mon",
   tue: "Tue",
   wed: "Wed",
@@ -20,13 +21,8 @@ export function formatTime(t: string) {
   return `${h12}${minutes}${period}`;
 }
 
-/**
- * Returns grouped, human-readable hour lines like:
- * - "Mon–Sat: 3pm–2am"
- * - "Sun: 6pm–2am"
- */
 export function formatHoursLines(hours: Hours) {
-  const groups: { days: (typeof order)[number][]; open: string; close: string }[] = [];
+  const groups: { days: DayKey[]; open: string; close: string }[] = [];
 
   for (const d of order) {
     const entry = hours[d];
@@ -44,8 +40,8 @@ export function formatHoursLines(hours: Hours) {
     const days =
       g.days.length === 1
         ? dayLabel[g.days[0]]
-        : `${dayLabel[g.days[0]]}–${dayLabel[g.days[g.days.length - 1]]}`;
+        : `${dayLabel[g.days[0]]}-${dayLabel[g.days[g.days.length - 1]]}`;
 
-    return `${days}: ${formatTime(g.open)}–${formatTime(g.close)}`;
+    return `${days}: ${formatTime(g.open)}-${formatTime(g.close)}`;
   });
 }

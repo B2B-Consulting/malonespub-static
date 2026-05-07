@@ -1,23 +1,23 @@
 [
-  { "src": "/photos/exterior.webp", "alt": "Malone’s Pub exterior" },
-  { "src": "/photos/bar.webp", "alt": "Behind the bar" },
-  { "src": "/photos/patio.webp", "alt": "Patio / outside" },
-  { "src": "/photos/specials.webp", "alt": "Specials board" },
-  { "src": "/photos/inside.webp", "alt": "Inside Malone’s" },
+  { "src": "/photos/exterior.webp", "alt": "Malone's Pub exterior in Downtown Fort Worth" },
+  { "src": "/photos/bar.webp", "alt": "Behind the bar at Malone's Pub Fort Worth" },
+  { "src": "/photos/patio.webp", "alt": "Outside patio at Malone's Pub in Downtown Fort Worth" },
+  { "src": "/photos/specials.webp", "alt": "Beer board inside Malone's Pub Fort Worth" },
+  { "src": "/photos/inside.webp", "alt": "Interior of Malone's Pub near Sundance Square" },
   {
     "src": "/photos/pga-golden-tee-fort-worth.webp",
-    "alt": "Golden Tee machine at Malone’s Pub in Downtown Fort Worth"
+    "alt": "Golden Tee machine at Malone's Pub in Downtown Fort Worth"
   },
   {
     "src": "/photos/bar-dart-boards.webp",
-    "alt": "Dart boards inside Malone’s Pub Fort Worth"
+    "alt": "Dart boards inside Malone's Pub Fort Worth"
   },
   {
     "src": "/photos/bar-pool-table.webp",
-    "alt": "Pool table at Malone’s Pub in Downtown Fort Worth"
+    "alt": "Pool table at Malone's Pub near Sundance Square"
   },
   {
     "src": "/photos/big-lebowski-pinball.webp",
-    "alt": "Big Lebowski pinball machine at Malone’s Pub"
+    "alt": "Big Lebowski pinball machine at Malone's Pub Fort Worth"
   }
 ]

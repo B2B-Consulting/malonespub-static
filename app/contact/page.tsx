@@ -8,11 +8,12 @@ import { formatHoursLines } from "@/lib/hours";
 export const metadata: Metadata = {
   title: "Contact & Hours",
   description:
-    "Contact Malone’s Pub in Downtown Fort Worth (76102) near Sundance Square. Free street parking, pool tables, darts, Golden Tee, pinball, and bar food.",
+    "Contact Malone's Pub in Downtown Fort Worth near Sundance Square. Free street parking, pool tables, darts, Golden Tee, pinball, Guinness, and simple bar food.",
 };
 
 export default function ContactPage() {
-  const hoursLines = formatHoursLines(site.hours as any);
+  const hoursLines = formatHoursLines(site.hours);
+  const tel = `tel:${site.phone.replace(/[^\d+]/g, "")}`;
 
   return (
     <Section title="Contact">
@@ -32,10 +33,7 @@ export default function ContactPage() {
             <ButtonLink href={site.googleMapsUrl} external>
               Get Directions
             </ButtonLink>
-            <ButtonLink
-              href={`tel:${site.phone.replace(/[^\d+]/g, "")}`}
-              variant="ghost"
-            >
+            <ButtonLink href={tel} variant="ghost">
               Call
             </ButtonLink>
             <ButtonLink href={site.instagramUrl} external variant="ghost">
@@ -51,11 +49,12 @@ export default function ContactPage() {
         <Card>
           <div className="text-lg font-semibold">Email</div>
           <div className="mt-2 text-neutral-400">
+            Questions about Malone&apos;s Pub, directions, or the bar? Send us a note.
           </div>
 
           <div className="mt-5">
             <ButtonLink
-              href={`mailto:brian@b2bconsulting.com?subject=Malone%E2%80%99s%20Pub%20Question&body=Hey%20Malone%E2%80%99s%20team%2C%0A%0A`}
+              href="mailto:brian@b2bconsulting.com?subject=Malone%27s%20Pub%20Question&body=Hey%20Malone%27s%20team%2C%0A%0A"
               external
             >
               Email us

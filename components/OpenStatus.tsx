@@ -77,11 +77,9 @@ function getStatusNow(): OpenState {
 }
 
 export default function OpenStatus() {
-  const [status, setStatus] = useState<OpenState>("closed");
+  const [status, setStatus] = useState<OpenState>(() => getStatusNow());
 
   useEffect(() => {
-    setStatus(getStatusNow());
-
     const interval = setInterval(() => {
       setStatus(getStatusNow());
     }, 60_000);

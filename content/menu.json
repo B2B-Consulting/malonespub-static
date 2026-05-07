@@ -1,0 +1,130 @@
+[
+  {
+    "category": "Draft Beers",
+    "items": [
+      "Guinness Pub Draught",
+      "Community Mosaic IPA",
+      "Dos XX Lager",
+      "Shiner Bock"
+    ]
+  },
+  {
+    "category": "Non-Alcoholic Beer",
+    "items": ["Guinness 0.0", "Heineken 0.0", "Athletic Brewing"]
+  },
+  {
+    "category": "Domestic Bottles",
+    "items": [
+      "Budweiser",
+      "Bud Light",
+      "Coors",
+      "Coors Light",
+      "Miller Lite",
+      "Lone Star",
+      "Michelob Ultra",
+      "Miller High Life",
+      "Pabst Blue Ribbon",
+      "Rolling Rock",
+      "Yuengling"
+    ]
+  },
+  {
+    "category": "Import & Craft Bottles and Cans",
+    "items": [
+      "Abita Purple Haze",
+      "Beck's",
+      "Blue Moon",
+      "Corona Extra",
+      "Dale's Pale Ale",
+      "Deep Ellum IPA",
+      "Heineken",
+      "Heineken 0.0",
+      "Hoegaarden",
+      "Labatt Blue",
+      "Martin House Friday IPA",
+      "Martin House True Love",
+      "Modelo Especial",
+      "Molson Canadian",
+      "Negro Modelo",
+      "Old Chub Scotch Ale",
+      "Pacifico",
+      "Paulaner Hefe-Weizen",
+      "Rahr Adios Pantalones",
+      "Red Stripe",
+      "Revolver Blood & Honey",
+      "Saint Arnold Lawn Mower",
+      "Sierra Nevada Pale Ale",
+      "Smirnoff Ice",
+      "Stella Artois",
+      "Stone Delicious IPA",
+      "Wild Acre Sundance Wheat"
+    ]
+  },
+  {
+    "category": "Premium Imports & Specialty",
+    "items": [
+      "Arrogant Bastard",
+      "Chimay Blue Label",
+      "Chimay Red Label",
+      "Dogfish Head 60 Minute IPA",
+      "Dogfish Head 90 Minute IPA",
+      "Duvel",
+      "Franziskaner",
+      "Founders Breakfast Stout",
+      "Kronenbourg 1664",
+      "La Fin Du Monde",
+      "Leffe Blonde",
+      "Left Hand Milk Stout",
+      "Maredsous Tripel",
+      "Smithwick's Irish Red Ale",
+      "Weihenstephaner Hefe"
+    ]
+  },
+  {
+    "category": "Ciders & Seltzers",
+    "items": [
+      "Austin Eastciders Seasonal Cider",
+      "High Noon Peach",
+      "High Noon Watermelon",
+      "High Noon Pineapple",
+      "Coco Vodka Pineapple",
+      "Lone River Ranch Water",
+      "Strongbow Dry Cider",
+      "Topo Chico Strawberry Guava"
+    ]
+  },
+  {
+    "category": "Wine",
+    "groups": [
+      {
+        "name": "Red & Rose",
+        "items": [
+          "Barefoot Cabernet",
+          "Barefoot Merlot",
+          "Josh Rose",
+          "Whispering Angel Rose"
+        ]
+      },
+      {
+        "name": "White",
+        "items": [
+          "Barefoot Chardonnay",
+          "Chateau Ste. Michelle Riesling",
+          "Ecco Domani Pinot Grigio",
+          "Shannon Ridge Chardonnay",
+          "Oyster Bay Sauvignon Blanc"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Bar Bites",
+    "items": [
+      "Cheese Pizza",
+      "Pepperoni Pizza",
+      "Chips",
+      "Beef Jerky",
+      "Nuts"
+    ]
+  }
+]
