@@ -64,12 +64,6 @@ export default function PoolTournamentPage() {
             >
               Sign Up
             </a>
-            <a
-              href="#report"
-              className="rounded-lg border border-white/30 bg-black/45 px-5 py-3 text-center font-bold text-white transition hover:bg-white hover:text-neutral-950"
-            >
-              Report Match
-            </a>
             <Link
               href="/contact"
               className="rounded-lg border border-white/30 bg-black/45 px-5 py-3 text-center font-bold text-white transition hover:bg-white hover:text-neutral-950"
@@ -124,7 +118,6 @@ export default function PoolTournamentPage() {
         <PoolTournamentForms
           submitEmail={tournament.submitEmail}
           signupSubject={tournament.signupSubject}
-          resultSubject={tournament.resultSubject}
         />
       </section>
     </>
