@@ -10,7 +10,7 @@ const pageUrl = "https://malonespub.com/pool-tournament";
 export const metadata: Metadata = {
   title: "Pool Tournament",
   description:
-    "Sign up for Malone's Weekly Pool Challenge in Downtown Fort Worth. Weekly 8-ball matchups, Best of 3 games, handicap tiers, scoring, and monthly finals.",
+    "Sign up for Malone's Weekly Pool Challenge in Downtown Fort Worth. Weekly 8-ball matchups, Best of 3 games, per-game scoring, and monthly finals.",
   alternates: {
     canonical: pageUrl,
   },

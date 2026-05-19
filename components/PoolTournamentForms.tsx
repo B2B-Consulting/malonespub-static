@@ -115,11 +115,13 @@ export default function PoolTournamentForms({
         <p className="mt-3 text-sm leading-6 text-neutral-400">
           Weekly matchups are posted every Monday. You and your opponent have
           one week to meet at Malone&apos;s and play a Best of 3 8-ball match.
+          Each game won is worth 1 point.
         </p>
         <p className="mt-4 text-sm leading-6 text-neutral-400">
           The winner is responsible for reporting the final score to the
           bartender or organizer after the match. Scores should be reported like
-          this: Player A defeats Player B, 2-0 or 2-1.
+          this: Player A defeats Player B, 2-0 or 2-1. A 2-1 match still gives
+          the losing player 1 point for the game they won.
         </p>
       </div>
     </div>

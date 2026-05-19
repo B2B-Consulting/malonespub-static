@@ -1,17 +1,17 @@
 {
   "title": "Malone's Weekly Pool Challenge",
   "headline": "Malone's Weekly Pool Challenge",
-  "intro": "Weekly 8-ball matchups at Malone's Pub in Downtown Fort Worth. Players are assigned an opponent each week, play Best of 3, and report scores after the match.",
+  "intro": "Weekly 8-ball matchups at Malone's Pub in Downtown Fort Worth. Players are assigned an opponent each week, play Best of 3, and earn one point for each game won.",
   "submitEmail": "brian@b2bconsulting.com",
   "signupSubject": "Malone's Weekly Pool Challenge Signup",
   "details": [
     "Weekly matchups are posted every Monday.",
     "Each player is assigned an opponent for the week and may play any time during that week.",
-    "Every match is Best of 3 games of 8-ball."
+    "Matches are Best of 3 games of 8-ball, with one point awarded for each game won."
   ],
   "sections": [
     {
-      "title": "Format",
+      "title": "Weekly Format",
       "rules": [
         "Weekly matchups will be posted.",
         "Each player is assigned an opponent for the week.",
@@ -30,35 +30,154 @@
       ]
     },
     {
-      "title": "Match Rules",
-      "rules": [
-        "Call shot on every shot.",
-        "Scratch on the 8-ball is loss of game.",
-        "Winner breaks the first game; breaks alternate after that.",
-        "No coaching during matches.",
-        "Any dispute is settled by the bartender or tournament organizer."
-      ]
-    },
-    {
       "title": "Scoring",
       "rules": [
-        "Match win = 1 point.",
-        "Match loss = 0 points.",
-        "A player assigned two matches in a week may earn up to 2 points."
+        "Each game win = 1 point.",
+        "Players earn points for games won, not just matches won.",
+        "A 2-0 match awards 2 points to the winner and 0 points to the other player.",
+        "A 2-1 match awards 2 points to the winner and 1 point to the other player.",
+        "A player assigned two matches in a week may earn points for every game won in both matches."
       ]
     },
     {
-      "title": "Handicap System",
-      "intro": "Handicaps are used during regular weekly play to keep matches competitive.",
+      "title": "Object of the Game",
       "rules": [
-        "Tier A: Advanced.",
-        "Tier B: Intermediate.",
-        "Tier C: Beginner.",
-        "Tier A vs. Tier C: Tier C wins the match by winning 1 game; Tier A must win 2 games.",
-        "All other matchups use standard Best of 3: first player to win 2 games wins the match.",
-        "Player tiers are assigned by Malone's Pub or the league organizer.",
-        "Tiers may be adjusted between league cycles.",
-        "Tier assignments are final during the current cycle."
+        "8-ball is played with a cue ball and 15 object balls.",
+        "The purpose of the game is for one player or team to pocket either the solid balls numbered 1 to 7 or the striped balls numbered 9 to 15, then mark and pocket the 8-ball before the opponent.",
+        "Choice of balls is made by the player legally pocketing the first ball of the game."
+      ]
+    },
+    {
+      "title": "Lag",
+      "rules": [
+        "The lag is used to start each match.",
+        "Players simultaneously shoot a ball from the kitchen, banking it off the foot rail and back to the head of the table.",
+        "Striking the side rails or any pocket results in loss of the lag.",
+        "The closest ball to the head rail wins.",
+        "It is permissible to strike the head rail.",
+        "If the lagged balls make contact during the lag, the lag should be attempted again.",
+        "The winner of the lag chooses whether to break the first game.",
+        "Breaks alternate after the first game."
+      ]
+    },
+    {
+      "title": "The Rack",
+      "rules": [
+        "Balls are racked with a solid and stripe on opposite ends at the bottom of the rack.",
+        "The front ball is placed on the foot spot.",
+        "The 8-ball is placed in the center.",
+        "All balls should be frozen as tightly as possible."
+      ]
+    },
+    {
+      "title": "Breaking",
+      "rules": [
+        "To be a legal break, players must break from inside the kitchen.",
+        "The head ball or second ball must be struck first.",
+        "At least four object balls must be driven to rails or a ball must be pocketed.",
+        "The cue ball may not be shot into a rail before the break.",
+        "If the break is not legal and no balls were pocketed, the balls are reracked and broken by the same player.",
+        "If the break is not legal and balls were pocketed, play continues from the table as it lies and the incoming player takes the next shot.",
+        "If the break is not legal and results in a scratch, the incoming player gets ball-in-hand behind the kitchen."
+      ]
+    },
+    {
+      "title": "After the Break",
+      "rules": [
+        "If no balls are pocketed, it is the other player's turn.",
+        "If the 8-ball is pocketed on the break, the game is reracked and replayed because the table is coin operated.",
+        "If one ball is pocketed, it is still the breaker's turn, but the table remains open until a designated ball and pocket is declared and made.",
+        "If that next shot is not successful, the table remains open.",
+        "The 8-ball is neutral when the table is open and may be used in a combination shot.",
+        "The 8-ball is no longer neutral after a player or team has pocketed an object ball after the break.",
+        "If one or more of each category is pocketed on the break, the breaker has choice of balls and may shoot any ball except the 8-ball."
+      ]
+    },
+    {
+      "title": "Combination Shots",
+      "rules": [
+        "Combination shots are legal.",
+        "The player must call the correct ball and pocket.",
+        "The player must strike their own group ball first.",
+        "The 8-ball is not neutral after the table is no longer open."
+      ]
+    },
+    {
+      "title": "Balls on the Floor",
+      "rules": [
+        "If the 8-ball is knocked on the floor, it is loss of game.",
+        "An object ball knocked on the floor results in a foul.",
+        "Because the table is coin operated, object balls are not spotted unless they are immediately available without opening the table."
+      ]
+    },
+    {
+      "title": "Safety Shot",
+      "rules": [
+        "If a safety is called before a legal shot, a player may legally pocket the ball and forfeit the next shot."
+      ]
+    },
+    {
+      "title": "Pocketed Balls",
+      "rules": [
+        "Balls must remain in a pocket to be legal.",
+        "All pocketed balls remain in the pocket for the rest of the game.",
+        "Do not open the coin-operated table during a game to retrieve or spot balls."
+      ]
+    },
+    {
+      "title": "Coin-Operated Table Rules",
+      "rules": [
+        "Rules that normally require spotting a pocketed ball are adjusted because the table is coin operated.",
+        "If a pocketed ball cannot be retrieved without opening the table, it stays down.",
+        "If the 8-ball is pocketed early, out of turn, or on an illegal shot, it is loss of game unless these rules specifically say to rerack and replay.",
+        "If the 8-ball is pocketed on the break, rerack and replay the game.",
+        "Players should agree on any coin-table situation before the next shot is taken."
+      ]
+    },
+    {
+      "title": "Competitive Fouls",
+      "intro": "For competitive-level play, the penalty for these fouls is ball-in-hand for the incoming player. Ball-in-hand means the cue ball may be placed anywhere on the table, except a scratch on the break which results in ball-in-hand behind the kitchen.",
+      "rules": [
+        "The cue ball goes in a pocket or leaves the playing surface.",
+        "Failure to hit the correct group ball first.",
+        "Jumping the cue ball over another ball by purposely miscuing it up in the air.",
+        "Jump shots must be made with an elevated cue striking the top half of the cue ball.",
+        "During a shot, the cue ball does not touch anything.",
+        "After addressing the cue ball, a player may make further adjustments with the hand, cue stick, or any other piece of equipment."
+      ]
+    },
+    {
+      "title": "Recreational Fouls",
+      "rules": [
+        "If the cue ball goes in a pocket or leaves the playing surface, the incoming player places the ball in the kitchen and may play any ball outside the kitchen.",
+        "If a ball is pocketed as slop, the turn is forfeited and the incoming player plays the cue ball from its current location.",
+        "Slop means a pocketed ball that does not go into the obvious pocket as determined by the shooter's shot selection."
+      ]
+    },
+    {
+      "title": "Ways to Lose",
+      "rules": [
+        "Your opponent pockets their numerical group and legally pockets the 8-ball.",
+        "You pocket the 8-ball out of turn or knock it on the floor.",
+        "You pocket the 8-ball in the wrong pocket or fail to properly indicate the pocket.",
+        "You foul the cue ball and then pocket the 8-ball.",
+        "You scratch while playing the 8-ball."
+      ]
+    },
+    {
+      "title": "How to Win",
+      "rules": [
+        "A player or team wins the game when all balls of their numerical group have been pocketed and the 8-ball has been legally pocketed in a properly called pocket without scratching.",
+        "Matches are Best 2 out of 3 games."
+      ]
+    },
+    {
+      "title": "Doubles Play",
+      "rules": [
+        "After a successful lag, Team A selects a player to break and continue until that turn has ended.",
+        "Team B selects a player to take the next turn and continues until that turn has ended.",
+        "Team A's second player then takes a turn, followed by Team B's second player.",
+        "The rotation begins again with Team A's first player."
       ]
     },
     {
@@ -66,7 +185,8 @@
       "rules": [
         "The winner is responsible for reporting the final score to the bartender or organizer.",
         "Scores should be reported as: Player A defeats Player B, 2-0.",
-        "Scores should be reported as: Player A defeats Player B, 2-1."
+        "Scores should be reported as: Player A defeats Player B, 2-1.",
+        "Because points are awarded per game won, both players' game totals matter."
       ]
     },
     {
