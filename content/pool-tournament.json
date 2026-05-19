@@ -1,42 +1,33 @@
 {
-  "title": "Malone's Weekly Pool Challenge",
-  "headline": "Malone's Weekly Pool Challenge",
-  "intro": "Weekly 8-ball matchups at Malone's Pub in Downtown Fort Worth. Players are assigned an opponent each week, play Best of 3, and earn one point for each game won.",
-  "submitEmail": "brian@b2bconsulting.com",
-  "signupSubject": "Malone's Weekly Pool Challenge Signup",
+  "title": "Malone's Pool Tournament",
+  "headline": "Malone's Pool Tournament",
+  "intro": "Double-elimination 8-ball tournament rules for Malone's Pub in Downtown Fort Worth. Players stay alive until their second match loss.",
   "details": [
-    "Weekly matchups are posted every Monday.",
-    "Each player is assigned an opponent for the week and may play any time during that week.",
-    "Matches are Best of 3 games of 8-ball, with one point awarded for each game won."
+    "Double-elimination bracket: a player is eliminated after 2 match losses.",
+    "Matches are Best of 3 games of 8-ball.",
+    "Games are played on Malone's coin-operated pool table."
   ],
   "sections": [
     {
-      "title": "Weekly Format",
+      "title": "Tournament Format",
       "rules": [
-        "Weekly matchups will be posted.",
-        "Each player is assigned an opponent for the week.",
-        "Matches may be played any time during that week.",
+        "The tournament is double elimination.",
+        "Each player begins in the winners bracket.",
+        "A player who loses one match moves to the losers bracket.",
+        "A player is eliminated after their second match loss.",
         "Each match is Best of 3 games.",
         "Game format is 8-ball.",
-        "No BYEs: every player plays every week."
-      ]
-    },
-    {
-      "title": "No-BYE Format",
-      "rules": [
-        "If there is an odd number of players, one player will be assigned two matches that week.",
-        "The double-match assignment will rotate weekly.",
-        "No player will be assigned two matches again until every active player has had a turn."
+        "Bracket matchups and advancement are based on match wins and losses."
       ]
     },
     {
       "title": "Scoring",
       "rules": [
-        "Each game win = 1 point.",
-        "Players earn points for games won, not just matches won.",
-        "A 2-0 match awards 2 points to the winner and 0 points to the other player.",
-        "A 2-1 match awards 2 points to the winner and 1 point to the other player.",
-        "A player assigned two matches in a week may earn points for every game won in both matches."
+        "Match results should be reported as 2-0 or 2-1.",
+        "The player who wins 2 games wins the match.",
+        "A match win advances the player in the bracket.",
+        "A match loss counts as one tournament loss.",
+        "A player is out of the tournament after 2 match losses."
       ]
     },
     {
@@ -186,39 +177,21 @@
         "The winner is responsible for reporting the final score to the bartender or organizer.",
         "Scores should be reported as: Player A defeats Player B, 2-0.",
         "Scores should be reported as: Player A defeats Player B, 2-1.",
-        "Because points are awarded per game won, both players' game totals matter."
+        "Match results determine bracket advancement."
       ]
     },
     {
       "title": "Forfeits",
       "rules": [
-        "Players are expected to make a reasonable effort to complete their assigned match during the week.",
-        "If a player fails to complete the match without reasonable communication, that player may receive a 2-0 forfeit loss.",
-        "Repeated missed matches may result in removal from the active rotation."
-      ]
-    },
-    {
-      "title": "Inactivity",
-      "rules": [
-        "A player who misses 2 consecutive weeks may be marked inactive.",
-        "Inactive players are removed from weekly matchups.",
-        "Returning players may re-enter the league at the bottom of the rotation."
-      ]
-    },
-    {
-      "title": "Monthly Finals",
-      "rules": [
-        "At the end of each league cycle, the Top 4 players advance to a finals night.",
-        "#1 vs. #4.",
-        "#2 vs. #3.",
-        "Winners advance to the championship match.",
-        "No handicaps are used during finals."
+        "Players are expected to make a reasonable effort to complete assigned matches.",
+        "If a player fails to complete a match without reasonable communication, that player may receive a 2-0 forfeit loss.",
+        "A forfeit loss counts as a tournament loss."
       ]
     },
     {
       "title": "League Spirit",
       "rules": [
-        "This league is meant to be competitive, social, and fun.",
+        "This tournament is meant to be competitive, social, and fun.",
         "Respect the game, respect your opponent, and respect the bar.",
         "Play fast. Report scores. Have fun."
       ]

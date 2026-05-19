@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import PoolTournamentForms from "@/components/PoolTournamentForms";
 import tournament from "@/content/pool-tournament.json";
 import site from "@/content/site.json";
 
@@ -10,14 +9,14 @@ const pageUrl = "https://malonespub.com/pool-tournament";
 export const metadata: Metadata = {
   title: "Pool Tournament",
   description:
-    "Sign up for Malone's Weekly Pool Challenge in Downtown Fort Worth. Weekly 8-ball matchups, Best of 3 games, per-game scoring, and monthly finals.",
+    "Official rules for Malone's double-elimination 8-ball pool tournament in Downtown Fort Worth. Best of 3 matches on a coin-operated table.",
   alternates: {
     canonical: pageUrl,
   },
   openGraph: {
-    title: "Malone's Weekly Pool Challenge | Fort Worth Pool Tournament",
+    title: "Malone's Pool Tournament | Double-Elimination 8-Ball",
     description:
-      "Read the official rules and sign up for Malone's Weekly Pool Challenge, a weekly 8-ball tournament in Downtown Fort Worth.",
+      "Read the official rules for Malone's double-elimination 8-ball pool tournament in Downtown Fort Worth.",
     url: pageUrl,
     siteName: "Malone's Pub",
     type: "website",
@@ -59,10 +58,10 @@ export default function PoolTournamentPage() {
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
-              href="#signup"
+              href="#rules"
               className="rounded-lg bg-green-500 px-5 py-3 text-center font-bold text-neutral-950 transition hover:bg-green-400"
             >
-              Sign Up
+              View Rules
             </a>
             <Link
               href="/contact"
@@ -95,7 +94,7 @@ export default function PoolTournamentPage() {
             Official Rules
           </p>
           <h2 className="mt-3 text-3xl font-black md:text-4xl">
-            Malone&apos;s Weekly Pool Challenge
+            Malone&apos;s Pool Tournament
           </h2>
 
           <div className="mt-7 grid gap-5 lg:grid-cols-2">
@@ -124,13 +123,6 @@ export default function PoolTournamentPage() {
             ))}
           </div>
         </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 py-14">
-        <PoolTournamentForms
-          submitEmail={tournament.submitEmail}
-          signupSubject={tournament.signupSubject}
-        />
       </section>
     </>
   );
