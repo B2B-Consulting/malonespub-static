@@ -1,0 +1,22 @@
+{
+  "title": "Malone's Pool Tournament",
+  "headline": "Pool Tournament at Malone's Pub",
+  "intro": "Sign up, check the house rules, and report match results for the Malone's Pub pool tournament in Downtown Fort Worth.",
+  "submitEmail": "brian@b2bconsulting.com",
+  "signupSubject": "Malone's Pool Tournament Signup",
+  "resultSubject": "Malone's Pool Tournament Match Result",
+  "details": [
+    "Hosted at Malone's Pub, 1303 Calhoun St in Downtown Fort Worth.",
+    "Bracket format, match length, and start time can be posted here once confirmed.",
+    "Players should check in with the bartender or tournament organizer before their first match."
+  ],
+  "rules": [
+    "Tournament games are played on the house pool table using house equipment unless the organizer approves otherwise.",
+    "Standard 8-ball rules apply unless a house rule is posted before the bracket starts.",
+    "Lag or coin flip determines the opening break.",
+    "Call the 8-ball pocket before shooting the 8-ball.",
+    "If a shot or foul is disputed, pause the game and ask the tournament organizer before the next shot.",
+    "The winner reports the final result after the match.",
+    "Good sportsmanship is expected. The organizer has final say on rule calls, forfeits, and bracket issues."
+  ]
+}
