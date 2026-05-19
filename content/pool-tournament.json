@@ -126,23 +126,17 @@
       ]
     },
     {
-      "title": "Competitive Fouls",
-      "intro": "For competitive-level play, the penalty for these fouls is ball-in-hand for the incoming player. Ball-in-hand means the cue ball may be placed anywhere on the table, except a scratch on the break which results in ball-in-hand behind the kitchen.",
+      "title": "Fouls & Ball-in-Hand",
+      "intro": "For this tournament, the penalty for a foul is ball-in-hand for the incoming player. Ball-in-hand means the cue ball may be placed anywhere on the table, except a scratch on the break which results in ball-in-hand behind the kitchen.",
       "rules": [
         "The cue ball goes in a pocket or leaves the playing surface.",
         "Failure to hit the correct group ball first.",
         "Jumping the cue ball over another ball by purposely miscuing it up in the air.",
         "Jump shots must be made with an elevated cue striking the top half of the cue ball.",
         "During a shot, the cue ball does not touch anything.",
+        "A slop shot ends the shooter's turn; the incoming player plays the cue ball from its current location unless another foul occurred.",
+        "Slop means a pocketed ball that does not go into the obvious pocket as determined by the shooter's shot selection.",
         "After addressing the cue ball, a player may make further adjustments with the hand, cue stick, or any other piece of equipment."
-      ]
-    },
-    {
-      "title": "Recreational Fouls",
-      "rules": [
-        "If the cue ball goes in a pocket or leaves the playing surface, the incoming player places the ball in the kitchen and may play any ball outside the kitchen.",
-        "If a ball is pocketed as slop, the turn is forfeited and the incoming player plays the cue ball from its current location.",
-        "Slop means a pocketed ball that does not go into the obvious pocket as determined by the shooter's shot selection."
       ]
     },
     {
