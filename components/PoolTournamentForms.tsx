@@ -40,6 +40,7 @@ export default function PoolTournamentForms({
       `Phone: ${fieldValue(form, "phone")}`,
       `Email: ${fieldValue(form, "email")}`,
       `Nickname: ${fieldValue(form, "nickname")}`,
+      `Weekly availability: ${fieldValue(form, "availability")}`,
       `Notes: ${fieldValue(form, "notes")}`,
     ];
 
@@ -55,7 +56,8 @@ export default function PoolTournamentForms({
       >
         <h2 className="text-2xl font-black">Sign Up</h2>
         <p className="mt-2 text-sm leading-6 text-neutral-400">
-          Add your name to the pool tournament list.
+          Add your name to the weekly pool tournament list. Matchups are sent
+          out on Monday.
         </p>
 
         <div className="mt-5 grid gap-4">
@@ -80,6 +82,15 @@ export default function PoolTournamentForms({
           </label>
 
           <label className={labelClass}>
+            Weekly availability
+            <input
+              className={inputClass}
+              name="availability"
+              placeholder="Example: weeknights after 7pm"
+            />
+          </label>
+
+          <label className={labelClass}>
             Notes
             <textarea className={inputClass} name="notes" rows={4} />
           </label>
@@ -100,15 +111,15 @@ export default function PoolTournamentForms({
       </form>
 
       <div className="rounded-lg border border-white/10 bg-black/35 p-5">
-        <h2 className="text-2xl font-black">Match Results</h2>
+        <h2 className="text-2xl font-black">How Matches Work</h2>
         <p className="mt-3 text-sm leading-6 text-neutral-400">
-          Match reporting is not public. Results should be given to the
-          tournament organizer after the match so only signed-up players can
-          update the bracket.
+          Weekly matchups are posted every Monday. You and your opponent have
+          one week to meet at Malone&apos;s and play a Best of 3 8-ball match.
         </p>
         <p className="mt-4 text-sm leading-6 text-neutral-400">
-          If you have not signed up yet, use the signup form first and check in
-          at the bar before your first match.
+          The winner is responsible for reporting the final score to the
+          bartender or organizer after the match. Scores should be reported like
+          this: Player A defeats Player B, 2-0 or 2-1.
         </p>
       </div>
     </div>

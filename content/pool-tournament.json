@@ -1,21 +1,107 @@
 {
-  "title": "Malone's Pool Tournament",
-  "headline": "Pool Tournament at Malone's Pub",
-  "intro": "Sign up, check the house rules, and report match results for the Malone's Pub pool tournament in Downtown Fort Worth.",
+  "title": "Malone's Weekly Pool Challenge",
+  "headline": "Malone's Weekly Pool Challenge",
+  "intro": "Weekly 8-ball matchups at Malone's Pub in Downtown Fort Worth. Players are assigned an opponent each week, play Best of 3, and report scores after the match.",
   "submitEmail": "brian@b2bconsulting.com",
-  "signupSubject": "Malone's Pool Tournament Signup",
+  "signupSubject": "Malone's Weekly Pool Challenge Signup",
   "details": [
-    "Hosted at Malone's Pub, 1303 Calhoun St in Downtown Fort Worth.",
-    "Bracket format, match length, and start time can be posted here once confirmed.",
-    "Players should check in with the bartender or tournament organizer before their first match."
+    "Weekly matchups are posted every Monday.",
+    "Each player is assigned an opponent for the week and may play any time during that week.",
+    "Every match is Best of 3 games of 8-ball."
   ],
-  "rules": [
-    "Tournament games are played on the house pool table using house equipment unless the organizer approves otherwise.",
-    "Standard 8-ball rules apply unless a house rule is posted before the bracket starts.",
-    "Lag or coin flip determines the opening break.",
-    "Call the 8-ball pocket before shooting the 8-ball.",
-    "If a shot or foul is disputed, pause the game and ask the tournament organizer before the next shot.",
-    "The winner reports the final result after the match.",
-    "Good sportsmanship is expected. The organizer has final say on rule calls, forfeits, and bracket issues."
+  "sections": [
+    {
+      "title": "Format",
+      "rules": [
+        "Weekly matchups will be posted.",
+        "Each player is assigned an opponent for the week.",
+        "Matches may be played any time during that week.",
+        "Each match is Best of 3 games.",
+        "Game format is 8-ball.",
+        "No BYEs: every player plays every week."
+      ]
+    },
+    {
+      "title": "No-BYE Format",
+      "rules": [
+        "If there is an odd number of players, one player will be assigned two matches that week.",
+        "The double-match assignment will rotate weekly.",
+        "No player will be assigned two matches again until every active player has had a turn."
+      ]
+    },
+    {
+      "title": "Match Rules",
+      "rules": [
+        "Call shot on every shot.",
+        "Scratch on the 8-ball is loss of game.",
+        "Winner breaks the first game; breaks alternate after that.",
+        "No coaching during matches.",
+        "Any dispute is settled by the bartender or tournament organizer."
+      ]
+    },
+    {
+      "title": "Scoring",
+      "rules": [
+        "Match win = 1 point.",
+        "Match loss = 0 points.",
+        "A player assigned two matches in a week may earn up to 2 points."
+      ]
+    },
+    {
+      "title": "Handicap System",
+      "intro": "Handicaps are used during regular weekly play to keep matches competitive.",
+      "rules": [
+        "Tier A: Advanced.",
+        "Tier B: Intermediate.",
+        "Tier C: Beginner.",
+        "Tier A vs. Tier C: Tier C wins the match by winning 1 game; Tier A must win 2 games.",
+        "All other matchups use standard Best of 3: first player to win 2 games wins the match.",
+        "Player tiers are assigned by Malone's Pub or the league organizer.",
+        "Tiers may be adjusted between league cycles.",
+        "Tier assignments are final during the current cycle."
+      ]
+    },
+    {
+      "title": "Reporting Scores",
+      "rules": [
+        "The winner is responsible for reporting the final score to the bartender or organizer.",
+        "Scores should be reported as: Player A defeats Player B, 2-0.",
+        "Scores should be reported as: Player A defeats Player B, 2-1."
+      ]
+    },
+    {
+      "title": "Forfeits",
+      "rules": [
+        "Players are expected to make a reasonable effort to complete their assigned match during the week.",
+        "If a player fails to complete the match without reasonable communication, that player may receive a 2-0 forfeit loss.",
+        "Repeated missed matches may result in removal from the active rotation."
+      ]
+    },
+    {
+      "title": "Inactivity",
+      "rules": [
+        "A player who misses 2 consecutive weeks may be marked inactive.",
+        "Inactive players are removed from weekly matchups.",
+        "Returning players may re-enter the league at the bottom of the rotation."
+      ]
+    },
+    {
+      "title": "Monthly Finals",
+      "rules": [
+        "At the end of each league cycle, the Top 4 players advance to a finals night.",
+        "#1 vs. #4.",
+        "#2 vs. #3.",
+        "Winners advance to the championship match.",
+        "No handicaps are used during finals."
+      ]
+    },
+    {
+      "title": "League Spirit",
+      "rules": [
+        "This league is meant to be competitive, social, and fun.",
+        "Respect the game, respect your opponent, and respect the bar.",
+        "Play fast. Report scores. Have fun."
+      ]
+    }
   ]
 }

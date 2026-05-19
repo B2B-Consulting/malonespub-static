@@ -10,14 +10,14 @@ const pageUrl = "https://malonespub.com/pool-tournament";
 export const metadata: Metadata = {
   title: "Pool Tournament",
   description:
-    "Sign up for the Malone's Pub pool tournament in Downtown Fort Worth, read the rules, and report match results after tournament games.",
+    "Sign up for Malone's Weekly Pool Challenge in Downtown Fort Worth. Weekly 8-ball matchups, Best of 3 games, handicap tiers, scoring, and monthly finals.",
   alternates: {
     canonical: pageUrl,
   },
   openGraph: {
-    title: "Pool Tournament at Malone's Pub Fort Worth",
+    title: "Malone's Weekly Pool Challenge | Fort Worth Pool Tournament",
     description:
-      "Read the rules, sign up, and report match results for the Malone's Pub pool tournament in Downtown Fort Worth.",
+      "Read the official rules and sign up for Malone's Weekly Pool Challenge, a weekly 8-ball tournament in Downtown Fort Worth.",
     url: pageUrl,
     siteName: "Malone's Pub",
     type: "website",
@@ -92,25 +92,37 @@ export default function PoolTournamentPage() {
       <section id="rules" className="border-y border-white/10 bg-neutral-900">
         <div className="mx-auto max-w-6xl px-4 py-14">
           <p className="text-sm font-bold uppercase tracking-[0.25em] text-green-300">
-            Rules
+            Official Rules
           </p>
           <h2 className="mt-3 text-3xl font-black md:text-4xl">
-            Tournament Rules
+            Malone&apos;s Weekly Pool Challenge
           </h2>
 
-          <ol className="mt-7 grid gap-3 md:grid-cols-2">
-            {tournament.rules.map((rule, index) => (
-              <li
-                key={rule}
-                className="rounded-lg border border-white/10 bg-black/35 p-5 text-neutral-200"
+          <div className="mt-7 grid gap-5 lg:grid-cols-2">
+            {tournament.sections.map((section) => (
+              <div
+                key={section.title}
+                className="rounded-lg border border-white/10 bg-black/35 p-5"
               >
-                <span className="mr-2 font-black text-green-300">
-                  {index + 1}.
-                </span>
-                {rule}
-              </li>
+                <h3 className="text-xl font-black text-white">
+                  {section.title}
+                </h3>
+                {"intro" in section && section.intro ? (
+                  <p className="mt-3 text-sm leading-6 text-neutral-400">
+                    {section.intro}
+                  </p>
+                ) : null}
+                <ul className="mt-4 space-y-2 text-sm leading-6 text-neutral-300">
+                  {section.rules.map((rule) => (
+                    <li key={rule} className="flex gap-2">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-green-300" />
+                      <span>{rule}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
 
