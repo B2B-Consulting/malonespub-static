@@ -9,27 +9,26 @@ const directionsUrl =
   "https://www.google.com/maps/search/?api=1&query=Malone%27s+Pub+1303+Calhoun+St+Fort+Worth+TX+76102";
 
 export const metadata: Metadata = {
-  title: "Watch the 2026 World Cup in Fort Worth",
+  title: "2026 Soccer Tournament Viewing in Fort Worth",
   description:
-    "Watch the 2026 World Cup at Malone's Pub in Downtown Fort Worth. Cold beer, Guinness, pool, darts, Golden Tee, pinball, bar food, and a laid-back pub crowd near Sundance Square.",
+    "Watch 2026 international soccer matches at Malone's Pub in Downtown Fort Worth. Cold beer, Guinness, pool, darts, Golden Tee, pinball, bar bites, and a laid-back pub crowd near Sundance Square.",
   keywords: [
-    "Watch World Cup Fort Worth",
-    "World Cup bar Fort Worth",
-    "Soccer bar Fort Worth",
-    "Where to watch World Cup in Fort Worth",
-    "Watch soccer downtown Fort Worth",
-    "World Cup 2026 Fort Worth bar",
-    "Watch USA World Cup games Fort Worth",
-    "Watch Mexico World Cup games Fort Worth",
-    "Watch England World Cup games Fort Worth",
+    "watch World Cup Fort Worth",
+    "soccer bar Fort Worth",
+    "where to watch World Cup in Fort Worth",
+    "watch soccer downtown Fort Worth",
+    "2026 soccer tournament Fort Worth bar",
+    "watch USA soccer games Fort Worth",
+    "watch Mexico soccer games Fort Worth",
+    "watch England soccer games Fort Worth",
   ],
   alternates: {
     canonical: pageUrl,
   },
   openGraph: {
-    title: "Watch the 2026 World Cup in Fort Worth | Malone's Pub",
+    title: "2026 Soccer Tournament Viewing in Fort Worth | Malone's Pub",
     description:
-      "Malone's Pub is showing 2026 World Cup games in Downtown Fort Worth with Guinness, cold beer, bar bites, pool, darts, Golden Tee, and pinball.",
+      "Malone's Pub is a Downtown Fort Worth bar for watching major international soccer matches with Guinness, cold beer, bar bites, pool, darts, Golden Tee, and pinball.",
     url: pageUrl,
     siteName: "Malone's Pub",
     type: "website",
@@ -54,19 +53,24 @@ const priorityMatches = [
   "Japan matches",
   "Knockout rounds",
   "Semifinals",
-  "World Cup Final",
+  "Tournament final",
 ];
 
 const faqs = [
   {
-    question: "Where can I watch the World Cup in Fort Worth?",
+    question: "Where can I watch World Cup games in Fort Worth?",
     answer:
-      "Malone's Pub in Downtown Fort Worth will be showing 2026 World Cup games at 1303 Calhoun St near Sundance Square.",
+      "Malone's Pub in Downtown Fort Worth is a local bar where soccer fans can watch major 2026 international tournament matches near Sundance Square.",
   },
   {
-    question: "Is Malone's Pub showing World Cup games?",
+    question: "Is Malone's Pub affiliated with FIFA or the World Cup?",
     answer:
-      "Yes. Malone's Pub will be showing World Cup games, with major matches and knockout games highlighted as the schedule is set.",
+      "No. Malone's Pub is an independent Downtown Fort Worth bar and is not affiliated with, sponsored by, endorsed by, or officially connected to FIFA or the World Cup.",
+  },
+  {
+    question: "Will Malone's Pub show USA, Mexico, and England soccer matches?",
+    answer:
+      "Malone's Pub plans to show major 2026 international soccer matches, including high-interest country matchups when the schedule and broadcast availability allow.",
   },
   {
     question: "Does Malone's Pub serve Guinness?",
@@ -84,11 +88,6 @@ const faqs = [
       "Malone's Pub opens at 3pm Monday through Friday and 2pm Saturday and Sunday, and closes at 2am every night.",
   },
   {
-    question: "Does Malone's Pub have food?",
-    answer:
-      "Malone's Pub has simple bar food and bar bites including pizza, chips, beef jerky, and nuts.",
-  },
-  {
     question: "Does Malone's Pub have pool, darts, Golden Tee, or pinball?",
     answer:
       "Yes. Malone's Pub has pool, darts, Golden Tee, Big Lebowski pinball, and a jukebox.",
@@ -98,42 +97,9 @@ const faqs = [
 export default function WorldCupPage() {
   const tel = `tel:${site.phone.replace(/[^\d+]/g, "")}`;
 
-  const eventSchema = {
-    "@context": "https://schema.org",
-    "@type": "Event",
-    name: "2026 World Cup Games at Malone's Pub",
-    startDate: "2026-06-11",
-    endDate: "2026-07-19",
-    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-    eventStatus: "https://schema.org/EventScheduled",
-    location: {
-      "@type": "Place",
-      name: "Malone's Pub",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "1303 Calhoun St",
-        addressLocality: "Fort Worth",
-        addressRegion: "TX",
-        postalCode: "76102",
-        addressCountry: "US",
-      },
-    },
-    description:
-      "Watch 2026 World Cup games at Malone's Pub, an Irish pub & dive bar in Downtown Fort Worth near Sundance Square.",
-    organizer: {
-      "@type": "Organization",
-      name: "Malone's Pub",
-      url: "https://malonespub.com",
-    },
-  };
-
   return (
     <>
       <FaqSchema faqs={faqs} pageUrl={pageUrl} />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
-      />
 
       <section className="relative min-h-[640px] overflow-hidden border-b border-white/10">
         <Image
@@ -149,18 +115,21 @@ export default function WorldCupPage() {
         <div className="relative mx-auto flex min-h-[640px] max-w-6xl flex-col justify-center px-4 py-16">
           <div className="flex flex-wrap gap-2 text-xs font-bold uppercase tracking-[0.18em] text-green-200">
             {["USA", "MEX", "ENG", "BRA", "ARG", "GER", "JPN"].map((country) => (
-              <span key={country} className="rounded border border-white/20 bg-black/50 px-2 py-1">
+              <span
+                key={country}
+                className="rounded border border-white/20 bg-black/50 px-2 py-1"
+              >
                 {country}
               </span>
             ))}
           </div>
 
           <p className="mt-6 text-sm font-bold uppercase tracking-[0.25em] text-green-300">
-            2026 FIFA World Cup - Downtown Fort Worth
+            2026 International Soccer - Downtown Fort Worth
           </p>
 
           <h1 className="mt-4 max-w-4xl text-4xl font-black tracking-tight text-white md:text-6xl">
-            Watch the 2026 World Cup at Malone&apos;s Pub in Downtown Fort Worth
+            Watch 2026 Soccer Matches at Malone&apos;s Pub in Downtown Fort Worth
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-8 text-neutral-200 md:text-xl">
@@ -168,17 +137,35 @@ export default function WorldCupPage() {
             laid-back pub crowd at Malone&apos;s Pub near Sundance Square.
           </p>
 
+          <p className="mt-4 max-w-2xl rounded-lg border border-white/15 bg-black/45 p-3 text-sm leading-6 text-neutral-300">
+            Malone&apos;s Pub is not affiliated with, sponsored by, endorsed by,
+            or officially connected to FIFA or the World Cup. We are an
+            independent local pub where fans can watch televised soccer matches.
+          </p>
+
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a className="rounded-lg bg-green-500 px-5 py-3 text-center font-bold text-neutral-950 transition hover:bg-green-400" href={directionsUrl}>
+            <a
+              className="rounded-lg bg-green-500 px-5 py-3 text-center font-bold text-neutral-950 transition hover:bg-green-400"
+              href={directionsUrl}
+            >
               Get Directions
             </a>
-            <a className="rounded-lg border border-white/30 bg-black/45 px-5 py-3 text-center font-bold text-white transition hover:bg-white hover:text-neutral-950" href={tel}>
+            <a
+              className="rounded-lg border border-white/30 bg-black/45 px-5 py-3 text-center font-bold text-white transition hover:bg-white hover:text-neutral-950"
+              href={tel}
+            >
               Call Malone&apos;s
             </a>
-            <a className="rounded-lg border border-white/30 bg-black/45 px-5 py-3 text-center font-bold text-white transition hover:bg-white hover:text-neutral-950" href="#schedule">
-              See Match Schedule
+            <a
+              className="rounded-lg border border-white/30 bg-black/45 px-5 py-3 text-center font-bold text-white transition hover:bg-white hover:text-neutral-950"
+              href="#schedule"
+            >
+              See Soccer Schedule
             </a>
-            <Link className="rounded-lg border border-white/30 bg-black/45 px-5 py-3 text-center font-bold text-white transition hover:bg-white hover:text-neutral-950" href="/menu">
+            <Link
+              className="rounded-lg border border-white/30 bg-black/45 px-5 py-3 text-center font-bold text-white transition hover:bg-white hover:text-neutral-950"
+              href="/menu"
+            >
               View Drink Menu
             </Link>
           </div>
@@ -196,7 +183,10 @@ export default function WorldCupPage() {
           "Pool, darts, Golden Tee, pinball, and jukebox",
           "Near Sundance Square with free street parking",
         ].map((item) => (
-          <div key={item} className="rounded-lg border border-white/10 bg-neutral-900/70 p-5 text-neutral-200">
+          <div
+            key={item}
+            className="rounded-lg border border-white/10 bg-neutral-900/70 p-5 text-neutral-200"
+          >
             {item}
           </div>
         ))}
@@ -206,20 +196,24 @@ export default function WorldCupPage() {
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-[1.1fr_0.9fr]">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.25em] text-green-300">
-              Match Schedule
+              Soccer Schedule
             </p>
             <h2 className="mt-3 text-3xl font-black md:text-4xl">
-              World Cup Games We Plan to Show
+              2026 Soccer Matches We Plan to Show
             </h2>
             <p className="mt-5 leading-8 text-neutral-300">
-              The 2026 World Cup runs from June 11 through July 19, 2026. Once
-              matchups and kickoff times are final, this page can list dates,
-              countries, times, and day-of-week details for Fort Worth soccer fans.
+              The major 2026 international soccer tournament runs from June 11
+              through July 19, 2026. Once matchups and kickoff times are final,
+              this page can list dates, countries, times, and day-of-week
+              details for Fort Worth soccer fans.
             </p>
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {priorityMatches.map((match) => (
-                <div key={match} className="rounded-lg border border-green-400/20 bg-green-400/10 px-4 py-3 text-neutral-200">
+                <div
+                  key={match}
+                  className="rounded-lg border border-green-400/20 bg-green-400/10 px-4 py-3 text-neutral-200"
+                >
                   {match}
                 </div>
               ))}
@@ -242,12 +236,12 @@ export default function WorldCupPage() {
                 <dd className="font-bold">June 28-July 19</dd>
               </div>
               <div className="flex justify-between gap-4">
-                <dt className="text-neutral-400">World Cup Final</dt>
+                <dt className="text-neutral-400">Final match</dt>
                 <dd className="font-bold">July 19, 2026</dd>
               </div>
             </dl>
             <p className="mt-5 text-sm text-neutral-400">
-              Check back as the official match schedule gets closer.
+              Check back as the televised soccer schedule gets closer.
             </p>
           </div>
         </div>
@@ -259,31 +253,45 @@ export default function WorldCupPage() {
             Why Malone&apos;s
           </p>
           <h2 className="mt-3 text-3xl font-black md:text-4xl">
-            A Real Fort Worth Pub for the World&apos;s Biggest Soccer Tournament
+            A Real Fort Worth Pub for Major Soccer Matches
           </h2>
           <p className="mt-5 leading-8 text-neutral-300">
             Malone&apos;s is not a polished chain sports bar. It is Downtown Fort
-            Worth&apos;s longest-running Irish pub and neighborhood dive bar: cold
-            drinks, regulars, games, and enough grit to feel like an actual pub.
+            Worth&apos;s longest-running Irish pub and neighborhood dive bar:
+            cold drinks, regulars, games, and enough grit to feel like an
+            actual pub.
           </p>
           <p className="mt-4 leading-8 text-neutral-300">
             If you are searching for where to watch World Cup games in Fort
             Worth, a soccer bar near Sundance Square, or a Guinness in Downtown
-            Fort Worth, this is the page to keep handy.
+            Fort Worth, this page points you to the right local bar without
+            implying any official tournament affiliation.
           </p>
         </div>
 
         <div className="grid gap-4">
-          <Link className="rounded-lg border border-white/10 bg-neutral-900 p-5 transition hover:border-green-400/50" href="/photos">
+          <Link
+            className="rounded-lg border border-white/10 bg-neutral-900 p-5 transition hover:border-green-400/50"
+            href="/photos"
+          >
             See photos of the bar
           </Link>
-          <Link className="rounded-lg border border-white/10 bg-neutral-900 p-5 transition hover:border-green-400/50" href="/menu">
+          <Link
+            className="rounded-lg border border-white/10 bg-neutral-900 p-5 transition hover:border-green-400/50"
+            href="/menu"
+          >
             Check the drink menu and bar bites
           </Link>
-          <Link className="rounded-lg border border-white/10 bg-neutral-900 p-5 transition hover:border-green-400/50" href="/contact">
+          <Link
+            className="rounded-lg border border-white/10 bg-neutral-900 p-5 transition hover:border-green-400/50"
+            href="/contact"
+          >
             View hours, address, and contact info
           </Link>
-          <a className="rounded-lg border border-white/10 bg-neutral-900 p-5 transition hover:border-green-400/50" href={site.instagramUrl}>
+          <a
+            className="rounded-lg border border-white/10 bg-neutral-900 p-5 transition hover:border-green-400/50"
+            href={site.instagramUrl}
+          >
             Follow Malone&apos;s Pub on Instagram
           </a>
         </div>
@@ -292,12 +300,15 @@ export default function WorldCupPage() {
       <section className="border-t border-white/10 bg-black">
         <div className="mx-auto max-w-6xl px-4 py-14">
           <h2 className="text-3xl font-black md:text-4xl">
-            World Cup FAQ
+            Soccer Viewing FAQ
           </h2>
 
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             {faqs.map((faq) => (
-              <div key={faq.question} className="rounded-lg border border-white/10 bg-white/5 p-6">
+              <div
+                key={faq.question}
+                className="rounded-lg border border-white/10 bg-white/5 p-6"
+              >
                 <h3 className="font-black">{faq.question}</h3>
                 <p className="mt-3 text-neutral-300">{faq.answer}</p>
               </div>
@@ -305,10 +316,16 @@ export default function WorldCupPage() {
           </div>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <a className="rounded-lg bg-green-500 px-5 py-3 text-center font-bold text-neutral-950 transition hover:bg-green-400" href={directionsUrl}>
+            <a
+              className="rounded-lg bg-green-500 px-5 py-3 text-center font-bold text-neutral-950 transition hover:bg-green-400"
+              href={directionsUrl}
+            >
               Get directions to Malone&apos;s Pub
             </a>
-            <a className="rounded-lg border border-white/30 px-5 py-3 text-center font-bold text-white transition hover:bg-white hover:text-neutral-950" href={tel}>
+            <a
+              className="rounded-lg border border-white/30 px-5 py-3 text-center font-bold text-white transition hover:bg-white hover:text-neutral-950"
+              href={tel}
+            >
               Call {site.phone}
             </a>
           </div>

@@ -4,7 +4,7 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/menu", label: "Menu" },
   { href: "/pool-tournament", label: "Pool" },
-  { href: "/world-cup", label: "World Cup" },
+  { href: "/world-cup", label: "Soccer 2026" },
   { href: "/photos", label: "Photos" },
   { href: "/merch", label: "Merch" },
   { href: "/contact", label: "Contact" },
