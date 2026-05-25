@@ -1,5 +1,6 @@
 import site from "@/content/site.json";
 import ratings from "@/content/ratings.json";
+import { BUSINESS, mainImages } from "@/lib/business";
 
 const openingHours = [
   { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "15:00", closes: "02:00" },
@@ -25,13 +26,27 @@ export default function LocalBusinessSchema({ siteUrl }: { siteUrl: string }) {
     "@type": "BarOrPub",
     name: site.name,
     url: siteUrl,
-    image: [`${siteUrl}/photos/hero.webp`, `${siteUrl}/photos/exterior.webp`],
+    image: [
+      `${siteUrl}${mainImages.hero}`,
+      `${siteUrl}${mainImages.exterior}`,
+      `${siteUrl}${mainImages.pool}`,
+      `${siteUrl}${mainImages.darts}`,
+      `${siteUrl}${mainImages.goldenTee}`,
+      `${siteUrl}${mainImages.pinball}`,
+    ],
     description:
-      "Malone's Pub is Downtown Fort Worth's longest-running Irish pub and neighborhood dive bar with Guinness, cold beer, pool tables, darts, Golden Tee, Big Lebowski pinball, jukebox, simple bar food, and free street parking near Sundance Square.",
+      BUSINESS.description,
     telephone: "+18173325330",
     priceRange: "$",
     servesAlcohol: true,
-    servesCuisine: "Bar bites",
+    servesCuisine: ["Bar food", "Bar bites"],
+    makesOffer: ["Beer", "Guinness", "Cocktails", "Bar food"].map((name) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Product",
+        name,
+      },
+    })),
     hasMenu: `${siteUrl}/menu`,
     address: {
       "@type": "PostalAddress",
@@ -57,7 +72,12 @@ export default function LocalBusinessSchema({ siteUrl }: { siteUrl: string }) {
       { "@type": "LocationFeatureSpecification", name: "Bar food", value: true },
       { "@type": "LocationFeatureSpecification", name: "Free street parking", value: true },
     ],
-    sameAs: [site.googleMapsUrl, site.instagramUrl].filter(Boolean),
+    sameAs: [
+      site.googleMapsUrl,
+      site.instagramUrl,
+      BUSINESS.facebookUrl,
+      BUSINESS.googleBusinessUrl,
+    ].filter(Boolean),
   };
 
   if (hasValidRating) {

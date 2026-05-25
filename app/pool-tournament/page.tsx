@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import ReviewButton from "@/components/ReviewButton";
+import SeoFaq from "@/components/SeoFaq";
 import tournament from "@/content/pool-tournament.json";
 import site from "@/content/site.json";
+import { SITE_URL } from "@/lib/business";
 
 const pageUrl = "https://malonespub.com/pool-tournament";
 
@@ -22,7 +25,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/photos/bar-pool-table.webp",
+        url: "/photos/malones-pub-pool-table-fort-worth.webp",
         width: 1200,
         height: 630,
         alt: "Pool table at Malone's Pub near Sundance Square",
@@ -31,12 +34,35 @@ export const metadata: Metadata = {
   },
 };
 
+const poolFaqs = [
+  {
+    question: "Where can I play pool in Downtown Fort Worth?",
+    answer:
+      "Malone's Pub has a pool table in Downtown Fort Worth near Sundance Square.",
+  },
+  {
+    question: "Does Malone's Pub host pool tournaments?",
+    answer:
+      "Malone's Pub has a double-elimination 8-ball pool tournament rules page.",
+  },
+  {
+    question: "Does Malone's Pub have darts too?",
+    answer:
+      "Yes. Malone's has darts along with pool, Golden Tee, Big Lebowski pinball, and a jukebox.",
+  },
+  {
+    question: "Can beginners play pool at Malone's?",
+    answer:
+      "Yes. Malone's is a casual neighborhood bar, and beginners can play when the table is available.",
+  },
+];
+
 export default function PoolTournamentPage() {
   return (
     <>
       <section className="relative min-h-[560px] overflow-hidden border-b border-white/10">
         <Image
-          src="/photos/bar-pool-table.webp"
+          src="/photos/malones-pub-pool-table-fort-worth.webp"
           alt="Pool table at Malone's Pub near Sundance Square"
           fill
           priority
@@ -69,6 +95,7 @@ export default function PoolTournamentPage() {
             >
               Hours & Directions
             </Link>
+            <ReviewButton />
           </div>
 
           <p className="mt-5 text-sm text-neutral-300">
@@ -124,6 +151,12 @@ export default function PoolTournamentPage() {
           </div>
         </div>
       </section>
+
+      <SeoFaq
+        faqs={poolFaqs}
+        title="Pool Tournament FAQ"
+        pageUrl={`${SITE_URL}/pool-tournament`}
+      />
     </>
   );
 }

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s | Malone's Pub Fort Worth",
   },
   description:
-    "Malone's Pub is Downtown Fort Worth's longest-running Irish pub and neighborhood dive bar. Cold drinks, Guinness, pool, darts, Golden Tee, pinball, bar food, and a laid-back local crowd near Sundance Square.",
+    "Malone's Pub is a long-running Irish pub and neighborhood dive bar in Downtown Fort Worth with Guinness, pool, darts, Golden Tee, Big Lebowski pinball, bar food, and a laid-back local atmosphere.",
   keywords: [
     "Malone's Pub",
     "Malone's Pub Fort Worth",

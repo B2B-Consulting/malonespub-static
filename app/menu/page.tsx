@@ -1,12 +1,40 @@
 import type { Metadata } from "next";
 import Section from "@/components/Section";
+import SeoFaq from "@/components/SeoFaq";
 import menu from "@/content/menu.json";
+import { SITE_URL } from "@/lib/business";
 
 type MenuSection = {
   category: string;
   items?: string[];
   groups?: { name: string; items: string[] }[];
 };
+
+const menuFaqs = [
+  {
+    question: "Does Malone's Pub serve Guinness?",
+    answer: "Yes. Malone's serves Guinness Pub Draught and Guinness 0.0.",
+  },
+  {
+    question: "Does Malone's Pub have non-alcoholic beer?",
+    answer: "Yes. The menu includes Guinness 0.0, Heineken 0.0, and Athletic Brewing.",
+  },
+  {
+    question: "Does Malone's Pub have bar food?",
+    answer:
+      "Yes. Malone's serves simple bar food and bar bites including pizza, chips, beef jerky, and nuts.",
+  },
+  {
+    question: "Does the beer menu change?",
+    answer:
+      "Beer inventory can change, but the menu page is kept structured so it is easy to update.",
+  },
+  {
+    question: "Is Malone's near Sundance Square?",
+    answer:
+      "Yes. Malone's Pub is in Downtown Fort Worth near Sundance Square.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Drink Menu",
@@ -54,6 +82,8 @@ export default function MenuPage() {
           ))}
         </Section>
       ))}
+
+      <SeoFaq faqs={menuFaqs} title="Drink Menu FAQ" pageUrl={`${SITE_URL}/menu`} />
     </>
   );
 }

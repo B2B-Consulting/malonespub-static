@@ -1,9 +1,55 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 import Section from "@/components/Section";
 import ButtonLink from "@/components/ButtonLink";
 import OpenStatus from "@/components/OpenStatus";
 import Ratings from "@/components/Ratings";
+import ReviewButton from "@/components/ReviewButton";
+import SeoFaq from "@/components/SeoFaq";
 import site from "@/content/site.json";
+import { SITE_URL } from "@/lib/business";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Malone's Pub | Irish Pub & Dive Bar in Downtown Fort Worth",
+  },
+  description:
+    "Malone's Pub is a long-running Irish pub and neighborhood dive bar in Downtown Fort Worth with Guinness, pool, darts, Golden Tee, Big Lebowski pinball, bar food, and a laid-back local atmosphere.",
+  alternates: { canonical: SITE_URL },
+};
+
+const homeFaqs = [
+  {
+    question: "Is Malone's Pub an Irish pub?",
+    answer:
+      "Yes. Malone's Pub is a Downtown Fort Worth Irish pub and neighborhood dive bar with Guinness, cold beer, games, and bar food.",
+  },
+  {
+    question: "Is Malone's Pub a dive bar?",
+    answer:
+      "Yes. Malone's has a casual, no-frills neighborhood dive-bar feel.",
+  },
+  {
+    question: "Does Malone's Pub have pool tables?",
+    answer:
+      "Yes. Malone's has a pool table and a double-elimination 8-ball tournament rules page.",
+  },
+  {
+    question: "Does Malone's Pub have darts?",
+    answer:
+      "Yes. Malone's has dart boards along with Golden Tee, pinball, and a jukebox.",
+  },
+  {
+    question: "Does Malone's Pub serve Guinness?",
+    answer:
+      "Yes. Malone's serves Guinness Pub Draught and Guinness 0.0.",
+  },
+  {
+    question: "What time does Malone's Pub close?",
+    answer:
+      "Malone's Pub closes at 2am every night.",
+  },
+];
 
 export default function Home() {
   const tel = `tel:${site.phone.replace(/[^\d+]/g, "")}`;
@@ -63,6 +109,16 @@ export default function Home() {
       <Ratings />
 
       <Section>
+        <div className="flex flex-col items-center gap-3 text-center">
+          <h2 className="text-2xl font-black text-white">Like Malone&apos;s?</h2>
+          <p className="max-w-2xl text-neutral-400">
+            Reviews help local regulars and new downtown visitors find the bar.
+          </p>
+          <ReviewButton />
+        </div>
+      </Section>
+
+      <Section>
         <p className="mx-auto max-w-3xl text-center text-neutral-400">
           Located in the heart of <strong>Downtown Fort Worth</strong> near{" "}
           <strong>Sundance Square</strong>, Malone&apos;s Pub is a local staple for
@@ -96,6 +152,8 @@ export default function Home() {
           </div>
         </div>
       </Section>
+
+      <SeoFaq faqs={homeFaqs} title="Malone's Pub FAQ" pageUrl={SITE_URL} />
     </>
   );
 }

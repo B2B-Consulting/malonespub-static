@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import FaqSchema from "@/components/FaqSchema";
+import ReviewButton from "@/components/ReviewButton";
 import site from "@/content/site.json";
 
 const pageUrl = "https://malonespub.com/world-cup";
@@ -168,6 +169,7 @@ export default function WorldCupPage() {
             >
               View Drink Menu
             </Link>
+            <ReviewButton />
           </div>
 
           <p className="mt-5 text-sm text-neutral-300">
