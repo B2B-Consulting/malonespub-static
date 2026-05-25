@@ -16,7 +16,7 @@ export const BUSINESS = {
   instagramUrl: "https://www.instagram.com/malonespubfw/",
   facebookUrl: "",
   googleBusinessUrl: "",
-  googleReviewUrl: "PASTE_GOOGLE_REVIEW_LINK_HERE",
+  googleReviewUrl: "https://www.google.com/search?q=Malone%27s+Pub+Fort+Worth+TX+reviews",
   description:
     "Downtown Fort Worth Irish pub and neighborhood dive bar with Guinness, pool, darts, Golden Tee, Big Lebowski pinball, jukebox, and bar food.",
   hours: {

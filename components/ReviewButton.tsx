@@ -1,12 +1,9 @@
 import { BUSINESS } from "@/lib/business";
 
 export default function ReviewButton({ className = "" }: { className?: string }) {
-  const isPlaceholder = BUSINESS.googleReviewUrl.includes("PASTE_");
-  const href = isPlaceholder ? BUSINESS.mapsUrl : BUSINESS.googleReviewUrl;
-
   return (
     <a
-      href={href}
+      href={BUSINESS.googleReviewUrl}
       target="_blank"
       rel="noreferrer"
       className={[
