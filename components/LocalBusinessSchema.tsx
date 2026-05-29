@@ -4,7 +4,7 @@ import { BUSINESS, mainImages } from "@/lib/business";
 
 const openingHours = [
   { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "15:00", closes: "02:00" },
-  { days: ["Saturday", "Sunday"], opens: "14:00", closes: "02:00" },
+  { days: ["Saturday", "Sunday"], opens: "12:00", closes: "02:00" },
 ];
 
 export default function LocalBusinessSchema({ siteUrl }: { siteUrl: string }) {

@@ -86,7 +86,7 @@ const faqs = [
   {
     question: "What time does Malone's Pub open?",
     answer:
-      "Malone's Pub opens at 3pm Monday through Friday and 2pm Saturday and Sunday, and closes at 2am every night.",
+      "Malone's Pub opens at 3pm Monday through Friday and 12pm Saturday and Sunday, and closes at 2am every night.",
   },
   {
     question: "Does Malone's Pub have pool, darts, Golden Tee, or pinball?",

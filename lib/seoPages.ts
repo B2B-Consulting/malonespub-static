@@ -458,7 +458,7 @@ export const seoPages: Record<string, SeoLandingPage> = {
         body: [
           "When people search late night bar Fort Worth, they usually want simple information fast: where is it, is it open, and what kind of place is it? Malone's Pub answers all three. The bar is in Downtown Fort Worth, open until 2am every night, and built for casual drinks rather than upscale production.",
           evergreen.address,
-          "Weekday hours start at 3pm, weekend hours start at 2pm, and closing time is 2am. That makes Malone's useful for after-work drinks, late-night meetups, post-event stops, or one more round downtown.",
+          "Weekday hours start at 3pm, weekend hours start at 12pm, and closing time is 2am. That makes Malone's useful for after-work drinks, late-night meetups, post-event stops, or one more round downtown.",
         ],
       },
       {
@@ -479,7 +479,7 @@ export const seoPages: Record<string, SeoLandingPage> = {
       {
         question: "Is Malone's Pub open late on weekends?",
         answer:
-          "Yes. Malone's is open Saturday and Sunday from 2pm to 2am.",
+          "Yes. Malone's is open Saturday and Sunday from 12pm to 2am.",
       },
       {
         question: "Is Malone's a late-night bar in Downtown Fort Worth?",
