@@ -1,6 +1,5 @@
 "use client";
 
-import type { FormEvent } from "react";
 import { useEffect, useState } from "react";
 
 type PlayerSlot = {
@@ -35,14 +34,13 @@ type BracketState = Record<string, SlotValue>;
 type SaveStatus = Record<
   string,
   {
-    state: "idle" | "ready" | "error";
+    state: "idle" | "saving" | "saved" | "error";
     message: string;
-    mailtoHref?: string;
   }
 >;
 
 const STORAGE_KEY = "malones-pool-tournament-bracket-v3";
-const SCORE_REPORT_ENDPOINT = "https://formsubmit.co/brian@malonespub.com";
+const SCORE_API_ENDPOINT = "/api/pool-tournament/scores";
 
 const firstRoundPlayers = [
   "Missy",
@@ -275,6 +273,62 @@ export default function PoolTournamentBracket() {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(bracket));
   }, [bracket]);
 
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadSavedScores() {
+      try {
+        const response = await fetch(SCORE_API_ENDPOINT, {
+          cache: "no-store",
+        });
+
+        if (!response.ok) {
+          throw new Error("Unable to load saved scores.");
+        }
+
+        const data = (await response.json()) as {
+          scores?: Record<string, { score?: string }>;
+        };
+
+        if (!isMounted || !data.scores) {
+          return;
+        }
+
+        setBracket((current) => {
+          const nextBracket = { ...current };
+
+          Object.entries(data.scores ?? {}).forEach(([slotId, value]) => {
+            nextBracket[slotId] = {
+              ...emptySlot(),
+              ...nextBracket[slotId],
+              score: value.score ?? "",
+            };
+          });
+
+          return nextBracket;
+        });
+      } catch {
+        if (!isMounted) {
+          return;
+        }
+
+        setSaveStatus((current) => ({
+          ...current,
+          bracket: {
+            state: "error",
+            message: "Saved scores could not be loaded.",
+          },
+        }));
+      }
+    }
+
+    loadSavedScores();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   function updateSlot(id: string, field: keyof SlotValue, value: string) {
     setBracket((current) => ({
       ...current,
@@ -290,61 +344,14 @@ export default function PoolTournamentBracket() {
     return bracket[slot.id] ?? emptySlot();
   }
 
-  function getPlayerName(slot: PlayerSlot) {
-    const value = getSlotValue(slot);
-
-    return value.name || (slot.seed ? `Seed ${slot.seed}` : slot.label);
-  }
-
-  function getScoreEmailHref(
-    match: BracketMatch,
-    columnTitle: string,
-    playerOneName: string,
-    playerTwoName: string,
-    scoreOne: string,
-    scoreTwo: string,
-  ) {
-    const subject = `Pool Tournament Score - ${match.title}`;
-    const body = [
-      "Pool tournament score report",
-      "",
-      `Round: ${columnTitle}`,
-      `Match: ${match.title}`,
-      `${playerOneName}: ${scoreOne}`,
-      `${playerTwoName}: ${scoreTwo}`,
-      "",
-      `Reported result: ${playerOneName} ${scoreOne} - ${scoreTwo} ${playerTwoName}`,
-      `Submitted at: ${new Date().toLocaleString()}`,
-    ].join("\n");
-
-    return `mailto:brian@malonespub.com?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
-  }
-
-  function handleMatchScoreSubmit(
-    event: FormEvent<HTMLFormElement>,
-    match: BracketMatch,
-    columnTitle: string,
-  ) {
+  async function saveMatchScore(match: BracketMatch) {
     const [playerOne, playerTwo] = match.slots;
     const playerOneValue = getSlotValue(playerOne);
     const playerTwoValue = getSlotValue(playerTwo);
-    const playerOneName = getPlayerName(playerOne);
-    const playerTwoName = getPlayerName(playerTwo);
     const scoreOne = playerOneValue.score.trim();
     const scoreTwo = playerTwoValue.score.trim();
-    const mailtoHref = getScoreEmailHref(
-      match,
-      columnTitle,
-      playerOneName,
-      playerTwoName,
-      scoreOne,
-      scoreTwo,
-    );
 
     if (!scoreOne || !scoreTwo) {
-      event.preventDefault();
       setSaveStatus((current) => ({
         ...current,
         [match.id]: {
@@ -358,11 +365,70 @@ export default function PoolTournamentBracket() {
     setSaveStatus((current) => ({
       ...current,
       [match.id]: {
-        state: "ready",
-        message: "Opening score email form...",
-        mailtoHref,
+        state: "saving",
+        message: "Saving score...",
       },
     }));
+
+    try {
+      const response = await fetch(SCORE_API_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          matchId: match.id,
+          scores: {
+            [playerOne.id]: scoreOne,
+            [playerTwo.id]: scoreTwo,
+          },
+        }),
+      });
+
+      const data = (await response.json()) as {
+        error?: string;
+        scores?: Record<string, { score?: string }>;
+      };
+
+      if (!response.ok) {
+        throw new Error(data.error ?? "Unable to save score.");
+      }
+
+      if (data.scores) {
+        setBracket((current) => {
+          const nextBracket = { ...current };
+
+          Object.entries(data.scores ?? {}).forEach(([slotId, value]) => {
+            nextBracket[slotId] = {
+              ...emptySlot(),
+              ...nextBracket[slotId],
+              score: value.score ?? "",
+            };
+          });
+
+          return nextBracket;
+        });
+      }
+
+      setSaveStatus((current) => ({
+        ...current,
+        [match.id]: {
+          state: "saved",
+          message: "Score saved to the site.",
+        },
+      }));
+    } catch (error) {
+      setSaveStatus((current) => ({
+        ...current,
+        [match.id]: {
+          state: "error",
+          message:
+            error instanceof Error
+              ? error.message
+              : "Unable to save score right now.",
+        },
+      }));
+    }
   }
 
   return (
@@ -389,6 +455,12 @@ export default function PoolTournamentBracket() {
         </div>
 
         <div className="mt-8 space-y-10">
+          {saveStatus.bracket?.message ? (
+            <p className="rounded-lg border border-red-300/30 bg-red-950/40 px-4 py-3 text-sm font-bold text-red-200">
+              {saveStatus.bracket.message}
+            </p>
+          ) : null}
+
           {bracketGroups.map((group) => (
             <div key={group.title}>
               <h3 className="border-b border-white/10 pb-3 text-sm font-black uppercase tracking-[0.16em] text-white">
@@ -457,59 +529,16 @@ export default function PoolTournamentBracket() {
                             })}
                           </div>
                           <div className="mt-3 flex flex-col gap-2">
-                            <form
-                              action={SCORE_REPORT_ENDPOINT}
-                              method="POST"
-                              target="_blank"
-                              onSubmit={(event) =>
-                                handleMatchScoreSubmit(event, match, column.title)
-                              }
+                            <button
+                              type="button"
+                              onClick={() => saveMatchScore(match)}
+                              disabled={saveStatus[match.id]?.state === "saving"}
+                              className="w-full rounded-md bg-green-500 px-3 py-2 text-sm font-black text-neutral-950 transition hover:bg-green-400 disabled:cursor-not-allowed disabled:bg-neutral-700 disabled:text-neutral-400"
                             >
-                              <input
-                                type="hidden"
-                                name="_subject"
-                                value={`Pool Tournament Score - ${match.title}`}
-                              />
-                              <input type="hidden" name="_template" value="table" />
-                              <input type="hidden" name="_captcha" value="false" />
-                              <input type="hidden" name="Round" value={column.title} />
-                              <input type="hidden" name="Match" value={match.title} />
-                              <input
-                                type="hidden"
-                                name="Player 1"
-                                value={getPlayerName(match.slots[0])}
-                              />
-                              <input
-                                type="hidden"
-                                name="Player 1 Score"
-                                value={getSlotValue(match.slots[0]).score}
-                              />
-                              <input
-                                type="hidden"
-                                name="Player 2"
-                                value={getPlayerName(match.slots[1])}
-                              />
-                              <input
-                                type="hidden"
-                                name="Player 2 Score"
-                                value={getSlotValue(match.slots[1]).score}
-                              />
-                              <input
-                                type="hidden"
-                                name="Reported Result"
-                                value={`${getPlayerName(match.slots[0])} ${
-                                  getSlotValue(match.slots[0]).score
-                                } - ${getSlotValue(match.slots[1]).score} ${getPlayerName(
-                                  match.slots[1],
-                                )}`}
-                              />
-                              <button
-                                type="submit"
-                                className="w-full rounded-md bg-green-500 px-3 py-2 text-sm font-black text-neutral-950 transition hover:bg-green-400"
-                              >
-                                Save Score
-                              </button>
-                            </form>
+                              {saveStatus[match.id]?.state === "saving"
+                                ? "Saving..."
+                                : "Save Score"}
+                            </button>
                             {saveStatus[match.id]?.message ? (
                               <p
                                 className={
@@ -520,15 +549,6 @@ export default function PoolTournamentBracket() {
                               >
                                 {saveStatus[match.id]?.message}
                               </p>
-                            ) : null}
-                            {saveStatus[match.id]?.mailtoHref &&
-                            saveStatus[match.id]?.state === "error" ? (
-                              <a
-                                href={saveStatus[match.id]?.mailtoHref}
-                                className="rounded-md border border-white/20 px-3 py-2 text-center text-sm font-black text-white transition hover:border-green-300 hover:text-green-300"
-                              >
-                                Email Score
-                              </a>
                             ) : null}
                           </div>
                         </div>
