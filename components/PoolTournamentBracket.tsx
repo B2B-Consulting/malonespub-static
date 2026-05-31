@@ -1,5 +1,6 @@
 "use client";
 
+import type { FormEvent } from "react";
 import { useEffect, useState } from "react";
 
 type PlayerSlot = {
@@ -34,14 +35,14 @@ type BracketState = Record<string, SlotValue>;
 type SaveStatus = Record<
   string,
   {
-    state: "idle" | "saving" | "saved" | "error";
+    state: "idle" | "ready" | "error";
     message: string;
     mailtoHref?: string;
   }
 >;
 
 const STORAGE_KEY = "malones-pool-tournament-bracket-v3";
-const SCORE_REPORT_ENDPOINT = "https://formsubmit.co/ajax/brian@malonespub.com";
+const SCORE_REPORT_ENDPOINT = "https://formsubmit.co/brian@malonespub.com";
 
 const firstRoundPlayers = [
   "Missy",
@@ -321,7 +322,11 @@ export default function PoolTournamentBracket() {
     )}&body=${encodeURIComponent(body)}`;
   }
 
-  async function saveMatchScore(match: BracketMatch, columnTitle: string) {
+  function handleMatchScoreSubmit(
+    event: FormEvent<HTMLFormElement>,
+    match: BracketMatch,
+    columnTitle: string,
+  ) {
     const [playerOne, playerTwo] = match.slots;
     const playerOneValue = getSlotValue(playerOne);
     const playerTwoValue = getSlotValue(playerTwo);
@@ -339,6 +344,7 @@ export default function PoolTournamentBracket() {
     );
 
     if (!scoreOne || !scoreTwo) {
+      event.preventDefault();
       setSaveStatus((current) => ({
         ...current,
         [match.id]: {
@@ -352,59 +358,11 @@ export default function PoolTournamentBracket() {
     setSaveStatus((current) => ({
       ...current,
       [match.id]: {
-        state: "saving",
-        message: "Saving score...",
+        state: "ready",
+        message: "Opening score email form...",
         mailtoHref,
       },
     }));
-
-    try {
-      const formData = new FormData();
-      formData.append("_subject", `Pool Tournament Score - ${match.title}`);
-      formData.append("_template", "table");
-      formData.append("_captcha", "false");
-      formData.append("Round", columnTitle);
-      formData.append("Match", match.title);
-      formData.append("Player 1", playerOneName);
-      formData.append("Player 1 Score", scoreOne);
-      formData.append("Player 2", playerTwoName);
-      formData.append("Player 2 Score", scoreTwo);
-      formData.append(
-        "Reported Result",
-        `${playerOneName} ${scoreOne} - ${scoreTwo} ${playerTwoName}`,
-      );
-      formData.append("Submitted At", new Date().toLocaleString());
-      formData.append("Page", window.location.href);
-
-      const response = await fetch(SCORE_REPORT_ENDPOINT, {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Score email failed");
-      }
-
-      setSaveStatus((current) => ({
-        ...current,
-        [match.id]: {
-          state: "saved",
-          message: "Score sent.",
-        },
-      }));
-    } catch {
-      setSaveStatus((current) => ({
-        ...current,
-        [match.id]: {
-          state: "error",
-          message: "Could not send automatically.",
-          mailtoHref,
-        },
-      }));
-    }
   }
 
   return (
@@ -499,16 +457,59 @@ export default function PoolTournamentBracket() {
                             })}
                           </div>
                           <div className="mt-3 flex flex-col gap-2">
-                            <button
-                              type="button"
-                              onClick={() => saveMatchScore(match, column.title)}
-                              disabled={saveStatus[match.id]?.state === "saving"}
-                              className="rounded-md bg-green-500 px-3 py-2 text-sm font-black text-neutral-950 transition hover:bg-green-400 disabled:cursor-not-allowed disabled:bg-neutral-700 disabled:text-neutral-400"
+                            <form
+                              action={SCORE_REPORT_ENDPOINT}
+                              method="POST"
+                              target="_blank"
+                              onSubmit={(event) =>
+                                handleMatchScoreSubmit(event, match, column.title)
+                              }
                             >
-                              {saveStatus[match.id]?.state === "saving"
-                                ? "Saving..."
-                                : "Save Score"}
-                            </button>
+                              <input
+                                type="hidden"
+                                name="_subject"
+                                value={`Pool Tournament Score - ${match.title}`}
+                              />
+                              <input type="hidden" name="_template" value="table" />
+                              <input type="hidden" name="_captcha" value="false" />
+                              <input type="hidden" name="Round" value={column.title} />
+                              <input type="hidden" name="Match" value={match.title} />
+                              <input
+                                type="hidden"
+                                name="Player 1"
+                                value={getPlayerName(match.slots[0])}
+                              />
+                              <input
+                                type="hidden"
+                                name="Player 1 Score"
+                                value={getSlotValue(match.slots[0]).score}
+                              />
+                              <input
+                                type="hidden"
+                                name="Player 2"
+                                value={getPlayerName(match.slots[1])}
+                              />
+                              <input
+                                type="hidden"
+                                name="Player 2 Score"
+                                value={getSlotValue(match.slots[1]).score}
+                              />
+                              <input
+                                type="hidden"
+                                name="Reported Result"
+                                value={`${getPlayerName(match.slots[0])} ${
+                                  getSlotValue(match.slots[0]).score
+                                } - ${getSlotValue(match.slots[1]).score} ${getPlayerName(
+                                  match.slots[1],
+                                )}`}
+                              />
+                              <button
+                                type="submit"
+                                className="w-full rounded-md bg-green-500 px-3 py-2 text-sm font-black text-neutral-950 transition hover:bg-green-400"
+                              >
+                                Save Score
+                              </button>
+                            </form>
                             {saveStatus[match.id]?.message ? (
                               <p
                                 className={
