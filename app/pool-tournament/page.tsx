@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import PoolTournamentBracket from "@/components/PoolTournamentBracket";
 import ReviewButton from "@/components/ReviewButton";
 import SeoFaq from "@/components/SeoFaq";
 import tournament from "@/content/pool-tournament.json";
@@ -114,6 +115,8 @@ export default function PoolTournamentPage() {
           </div>
         ))}
       </section>
+
+      <PoolTournamentBracket />
 
       <section id="rules" className="border-y border-white/10 bg-neutral-900">
         <div className="mx-auto max-w-6xl px-4 py-14">
