@@ -31,8 +31,16 @@ type SlotValue = {
 };
 
 type BracketState = Record<string, SlotValue>;
+type SaveStatus = Record<
+  string,
+  {
+    state: "idle" | "saving" | "saved" | "error";
+    message: string;
+  }
+>;
 
 const STORAGE_KEY = "malones-pool-tournament-bracket-v3";
+const SCORE_REPORT_ENDPOINT = "https://formsubmit.co/ajax/brian@malonespub.com";
 
 const firstRoundPlayers = [
   "Missy",
@@ -259,6 +267,7 @@ export default function PoolTournamentBracket() {
       return defaults;
     }
   });
+  const [saveStatus, setSaveStatus] = useState<SaveStatus>({});
 
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(bracket));
@@ -273,6 +282,89 @@ export default function PoolTournamentBracket() {
         [field]: value,
       },
     }));
+  }
+
+  function getSlotValue(slot: PlayerSlot) {
+    return bracket[slot.id] ?? emptySlot();
+  }
+
+  function getPlayerName(slot: PlayerSlot) {
+    const value = getSlotValue(slot);
+
+    return value.name || (slot.seed ? `Seed ${slot.seed}` : slot.label);
+  }
+
+  async function saveMatchScore(match: BracketMatch, columnTitle: string) {
+    const [playerOne, playerTwo] = match.slots;
+    const playerOneValue = getSlotValue(playerOne);
+    const playerTwoValue = getSlotValue(playerTwo);
+    const playerOneName = getPlayerName(playerOne);
+    const playerTwoName = getPlayerName(playerTwo);
+    const scoreOne = playerOneValue.score.trim();
+    const scoreTwo = playerTwoValue.score.trim();
+
+    if (!scoreOne || !scoreTwo) {
+      setSaveStatus((current) => ({
+        ...current,
+        [match.id]: {
+          state: "error",
+          message: "Enter both scores first.",
+        },
+      }));
+      return;
+    }
+
+    setSaveStatus((current) => ({
+      ...current,
+      [match.id]: {
+        state: "saving",
+        message: "Saving score...",
+      },
+    }));
+
+    try {
+      const formData = new FormData();
+      formData.append("_subject", `Pool Tournament Score - ${match.title}`);
+      formData.append("_template", "table");
+      formData.append("_captcha", "false");
+      formData.append("Round", columnTitle);
+      formData.append("Match", match.title);
+      formData.append("Player 1", playerOneName);
+      formData.append("Player 1 Score", scoreOne);
+      formData.append("Player 2", playerTwoName);
+      formData.append("Player 2 Score", scoreTwo);
+      formData.append("Reported Result", `${playerOneName} ${scoreOne} - ${scoreTwo} ${playerTwoName}`);
+      formData.append("Submitted At", new Date().toLocaleString());
+      formData.append("Page", window.location.href);
+
+      const response = await fetch(SCORE_REPORT_ENDPOINT, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Score email failed");
+      }
+
+      setSaveStatus((current) => ({
+        ...current,
+        [match.id]: {
+          state: "saved",
+          message: "Score sent.",
+        },
+      }));
+    } catch {
+      setSaveStatus((current) => ({
+        ...current,
+        [match.id]: {
+          state: "error",
+          message: "Could not send. Please tell the bartender.",
+        },
+      }));
+    }
   }
 
   return (
@@ -365,6 +457,29 @@ export default function PoolTournamentBracket() {
                                 </div>
                               );
                             })}
+                          </div>
+                          <div className="mt-3 flex flex-col gap-2">
+                            <button
+                              type="button"
+                              onClick={() => saveMatchScore(match, column.title)}
+                              disabled={saveStatus[match.id]?.state === "saving"}
+                              className="rounded-md bg-green-500 px-3 py-2 text-sm font-black text-neutral-950 transition hover:bg-green-400 disabled:cursor-not-allowed disabled:bg-neutral-700 disabled:text-neutral-400"
+                            >
+                              {saveStatus[match.id]?.state === "saving"
+                                ? "Saving..."
+                                : "Save Score"}
+                            </button>
+                            {saveStatus[match.id]?.message ? (
+                              <p
+                                className={
+                                  saveStatus[match.id]?.state === "error"
+                                    ? "text-xs font-bold text-red-300"
+                                    : "text-xs font-bold text-green-300"
+                                }
+                              >
+                                {saveStatus[match.id]?.message}
+                              </p>
+                            ) : null}
                           </div>
                         </div>
                       ))}
