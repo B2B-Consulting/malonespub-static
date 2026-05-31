@@ -36,6 +36,7 @@ type SaveStatus = Record<
   {
     state: "idle" | "saving" | "saved" | "error";
     message: string;
+    mailtoHref?: string;
   }
 >;
 
@@ -294,6 +295,32 @@ export default function PoolTournamentBracket() {
     return value.name || (slot.seed ? `Seed ${slot.seed}` : slot.label);
   }
 
+  function getScoreEmailHref(
+    match: BracketMatch,
+    columnTitle: string,
+    playerOneName: string,
+    playerTwoName: string,
+    scoreOne: string,
+    scoreTwo: string,
+  ) {
+    const subject = `Pool Tournament Score - ${match.title}`;
+    const body = [
+      "Pool tournament score report",
+      "",
+      `Round: ${columnTitle}`,
+      `Match: ${match.title}`,
+      `${playerOneName}: ${scoreOne}`,
+      `${playerTwoName}: ${scoreTwo}`,
+      "",
+      `Reported result: ${playerOneName} ${scoreOne} - ${scoreTwo} ${playerTwoName}`,
+      `Submitted at: ${new Date().toLocaleString()}`,
+    ].join("\n");
+
+    return `mailto:brian@malonespub.com?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+  }
+
   async function saveMatchScore(match: BracketMatch, columnTitle: string) {
     const [playerOne, playerTwo] = match.slots;
     const playerOneValue = getSlotValue(playerOne);
@@ -302,6 +329,14 @@ export default function PoolTournamentBracket() {
     const playerTwoName = getPlayerName(playerTwo);
     const scoreOne = playerOneValue.score.trim();
     const scoreTwo = playerTwoValue.score.trim();
+    const mailtoHref = getScoreEmailHref(
+      match,
+      columnTitle,
+      playerOneName,
+      playerTwoName,
+      scoreOne,
+      scoreTwo,
+    );
 
     if (!scoreOne || !scoreTwo) {
       setSaveStatus((current) => ({
@@ -319,6 +354,7 @@ export default function PoolTournamentBracket() {
       [match.id]: {
         state: "saving",
         message: "Saving score...",
+        mailtoHref,
       },
     }));
 
@@ -333,7 +369,10 @@ export default function PoolTournamentBracket() {
       formData.append("Player 1 Score", scoreOne);
       formData.append("Player 2", playerTwoName);
       formData.append("Player 2 Score", scoreTwo);
-      formData.append("Reported Result", `${playerOneName} ${scoreOne} - ${scoreTwo} ${playerTwoName}`);
+      formData.append(
+        "Reported Result",
+        `${playerOneName} ${scoreOne} - ${scoreTwo} ${playerTwoName}`,
+      );
       formData.append("Submitted At", new Date().toLocaleString());
       formData.append("Page", window.location.href);
 
@@ -361,7 +400,8 @@ export default function PoolTournamentBracket() {
         ...current,
         [match.id]: {
           state: "error",
-          message: "Could not send. Please tell the bartender.",
+          message: "Could not send automatically.",
+          mailtoHref,
         },
       }));
     }
@@ -479,6 +519,15 @@ export default function PoolTournamentBracket() {
                               >
                                 {saveStatus[match.id]?.message}
                               </p>
+                            ) : null}
+                            {saveStatus[match.id]?.mailtoHref &&
+                            saveStatus[match.id]?.state === "error" ? (
+                              <a
+                                href={saveStatus[match.id]?.mailtoHref}
+                                className="rounded-md border border-white/20 px-3 py-2 text-center text-sm font-black text-white transition hover:border-green-300 hover:text-green-300"
+                              >
+                                Email Score
+                              </a>
                             ) : null}
                           </div>
                         </div>
