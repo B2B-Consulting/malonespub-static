@@ -533,7 +533,7 @@ export default function PoolTournamentBracket() {
                               type="button"
                               onClick={() => saveMatchScore(match)}
                               disabled={saveStatus[match.id]?.state === "saving"}
-                              className="w-full rounded-md bg-green-500 px-3 py-2 text-sm font-black text-neutral-950 transition hover:bg-green-400 disabled:cursor-not-allowed disabled:bg-neutral-700 disabled:text-neutral-400"
+                              className="self-start rounded-md bg-green-500 px-3 py-1.5 text-xs font-black text-neutral-950 transition hover:bg-green-400 disabled:cursor-not-allowed disabled:bg-neutral-700 disabled:text-neutral-400"
                             >
                               {saveStatus[match.id]?.state === "saving"
                                 ? "Saving..."
