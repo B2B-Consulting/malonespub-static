@@ -58,7 +58,7 @@ const firstRoundPlayers = [
   "Jeremy",
   "Mack",
   "Tolley",
-  "Brittany",
+  "Rodney",
 ];
 
 const bracketColumns: BracketColumn[] = [
