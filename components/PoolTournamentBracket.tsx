@@ -246,6 +246,19 @@ function defaultBracketState(): BracketState {
   }, {});
 }
 
+function mergeBracketState(defaults: BracketState, saved: BracketState) {
+  const nextBracket = { ...saved };
+
+  Object.entries(defaults).forEach(([slotId, defaultValue]) => {
+    nextBracket[slotId] = {
+      name: defaultValue.name,
+      score: saved[slotId]?.score ?? defaultValue.score,
+    };
+  });
+
+  return nextBracket;
+}
+
 export default function PoolTournamentBracket() {
   const [bracket, setBracket] = useState<BracketState>(() => {
     const defaults = defaultBracketState();
@@ -261,7 +274,7 @@ export default function PoolTournamentBracket() {
     }
 
     try {
-      return { ...defaults, ...(JSON.parse(saved) as BracketState) };
+      return mergeBracketState(defaults, JSON.parse(saved) as BracketState);
     } catch {
       window.localStorage.removeItem(STORAGE_KEY);
       return defaults;
