@@ -61,6 +61,25 @@ const firstRoundPlayers = [
   "Rodney",
 ];
 
+const thisWeekBracketSlots: BracketState = {
+  "w2-1-a": { name: "Roger", score: "" },
+  "w2-1-b": { name: "Hank", score: "" },
+  "w2-2-a": { name: "Oscar", score: "" },
+  "w2-2-b": { name: "Jeremy", score: "" },
+  "w2-3-a": { name: "Race", score: "" },
+  "w2-3-b": { name: "Joe", score: "" },
+  "w2-4-a": { name: "Collin", score: "" },
+  "w2-4-b": { name: "Tolley", score: "" },
+  "l1-1-a": { name: "Todd", score: "" },
+  "l1-1-b": { name: "Missy", score: "" },
+  "l1-2-a": { name: "Brendan", score: "" },
+  "l1-2-b": { name: "Rodney", score: "" },
+  "l1-3-a": { name: "Robbie", score: "" },
+  "l1-3-b": { name: "Matt", score: "" },
+  "l1-4-a": { name: "Chelsey", score: "" },
+  "l1-4-b": { name: "Mack", score: "" },
+};
+
 const bracketColumns: BracketColumn[] = [
   {
     title: "Winners Round 1",
@@ -240,10 +259,18 @@ function emptySlot(): SlotValue {
 }
 
 function defaultBracketState(): BracketState {
-  return firstRoundPlayers.reduce<BracketState>((slots, name, index) => {
-    slots[`seed-${index + 1}`] = { name, score: "" };
-    return slots;
-  }, {});
+  const firstRoundSlots = firstRoundPlayers.reduce<BracketState>(
+    (slots, name, index) => {
+      slots[`seed-${index + 1}`] = { name, score: "" };
+      return slots;
+    },
+    {},
+  );
+
+  return {
+    ...firstRoundSlots,
+    ...thisWeekBracketSlots,
+  };
 }
 
 function mergeBracketState(defaults: BracketState, saved: BracketState) {
