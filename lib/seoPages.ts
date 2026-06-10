@@ -498,19 +498,19 @@ export const seoPages: Record<string, SeoLandingPage> = {
       },
     ],
   },
-  "world-cup-fort-worth": {
-    slug: "world-cup-fort-worth",
-    title: "World Cup Fort Worth",
+  "soccer-2026-fort-worth": {
+    slug: "soccer-2026-fort-worth",
+    title: "Soccer 2026 Fort Worth",
     metaTitle: "World Cup Watch Party Fort Worth",
     description:
       "Looking for where to watch World Cup games in Fort Worth? Malone's Pub is an independent Downtown Fort Worth soccer bar for major 2026 international matches, Guinness, games, and bar food.",
-    eyebrow: "World Cup Fort Worth",
+    eyebrow: "Soccer 2026 Fort Worth",
     h1: "Where to Watch World Cup Games in Fort Worth",
     intro:
       "Malone's Pub is an independent Downtown Fort Worth bar for watching major 2026 international soccer matches with Guinness, cold beer, games, bar food, and a laid-back pub crowd.",
     image: mainImages.interior,
     imageAlt: "Interior of Malone's Pub in Downtown Fort Worth",
-    related: ["world-cup", "menu", "photos", "contact"],
+    related: ["soccer-2026", "menu", "photos", "contact"],
     sections: [
       {
         heading: "A Downtown Fort Worth Soccer Bar for Big Matches",
