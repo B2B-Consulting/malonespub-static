@@ -23,14 +23,19 @@ const priorityMatches = [
 
 const faqs = [
   {
-    question: "Where can I watch World Cup games in Fort Worth?",
+    question: "Where can I watch 2026 soccer matches in Fort Worth?",
     answer:
-      "Malone's Pub in Downtown Fort Worth is a local bar where soccer fans can watch major 2026 international tournament matches near Sundance Square.",
+      "You can watch televised 2026 international soccer matches at Malone's Pub in downtown Fort Worth. We'll be opening early for select morning matches that start before our normal business hours.",
   },
   {
-    question: "Is Malone's Pub affiliated with FIFA or the World Cup?",
+    question: "Is Malone's Pub an official FIFA or World Cup venue?",
     answer:
-      "No. Malone's Pub is an independent Downtown Fort Worth bar and is not affiliated with, sponsored by, endorsed by, or officially connected to FIFA or the World Cup.",
+      "No. Malone's Pub is not affiliated with, sponsored by, endorsed by, or officially connected to FIFA, FIFA World Cup, or any tournament organizer. We are an independent pub showing televised soccer matches.",
+  },
+  {
+    question: "Will Malone's Pub open early for morning soccer matches?",
+    answer:
+      "Yes. When a televised soccer match starts before our normal hours, Malone's Pub will open one hour before the first match of the day.",
   },
   {
     question: "Will Malone's Pub show USA, Mexico, and England soccer matches?",
@@ -94,18 +99,21 @@ export default function WorldCupPage() {
           </p>
 
           <h1 className="mt-4 max-w-4xl text-4xl font-black tracking-tight text-white md:text-6xl">
-            Watch 2026 Soccer Matches at Malone&apos;s Pub in Downtown Fort Worth
+            Watch 2026 International Soccer Matches at Malone&apos;s Pub in
+            Downtown Fort Worth
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-8 text-neutral-200 md:text-xl">
-            Cold beer, Guinness, pool, darts, Golden Tee, pinball, and a
-            laid-back pub crowd at Malone&apos;s Pub near Sundance Square.
+            Catch televised 2026 international soccer matches at Malone&apos;s
+            Pub in downtown Fort Worth. We&apos;ll be opening early for morning
+            matches that start before our normal business hours.
           </p>
 
           <p className="mt-4 max-w-2xl rounded-lg border border-white/15 bg-black/45 p-3 text-sm leading-6 text-neutral-300">
             Malone&apos;s Pub is not affiliated with, sponsored by, endorsed by,
-            or officially connected to FIFA or the World Cup. We are an
-            independent local pub where fans can watch televised soccer matches.
+            or officially connected to FIFA, FIFA World Cup, or any tournament
+            organizer. We are an independent local pub where fans can watch
+            televised soccer matches.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -142,12 +150,13 @@ export default function WorldCupPage() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-4 px-4 py-12 md:grid-cols-4">
+      <section className="mx-auto grid max-w-6xl gap-4 px-4 py-12 md:grid-cols-5">
         {[
           "Irish pub & dive bar in Downtown Fort Worth",
+          "Sports bar in Downtown Fort Worth showing soccer matches",
           "Guinness, cold beer, cocktails, and bar bites",
           "Pool, darts, Golden Tee, pinball, and jukebox",
-          "Near Sundance Square with free street parking",
+          "Near Sundance Square and the Fort Worth Convention Center",
         ].map((item) => (
           <div
             key={item}
@@ -171,7 +180,9 @@ export default function WorldCupPage() {
               The major 2026 international soccer tournament runs from June 11
               through July 19, 2026. Once matchups and kickoff times are final,
               this page can list dates, countries, times, and day-of-week
-              details for Fort Worth soccer fans.
+              details for Fort Worth soccer fans. For televised matches before
+              normal hours, Malone&apos;s Pub will open one hour before the first
+              match of the day.
             </p>
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
@@ -228,9 +239,11 @@ export default function WorldCupPage() {
             actual pub.
           </p>
           <p className="mt-4 leading-8 text-neutral-300">
-            If you are searching for where to watch World Cup games in Fort
-            Worth, a soccer bar near Sundance Square, or a Guinness in Downtown
-            Fort Worth, this page points you to the right local bar without
+            Fans searching for World Cup games in Fort Worth can watch
+            televised international soccer matches at Malone&apos;s Pub. If you
+            want to watch soccer in Fort Worth, it is a Fort Worth soccer bar,
+            sports bar in downtown Fort Worth, and pub showing soccer matches
+            near Sundance Square and the Fort Worth Convention Center without
             implying any official tournament affiliation.
           </p>
         </div>
@@ -295,6 +308,14 @@ export default function WorldCupPage() {
               Call {site.phone}
             </a>
           </div>
+
+          <p className="mt-8 max-w-4xl text-xs leading-5 text-neutral-500">
+            Malone&apos;s Pub is not affiliated with, sponsored by, endorsed by,
+            or officially connected to FIFA, FIFA World Cup, or any tournament
+            organizer. All trademarks are the property of their respective
+            owners. References to tournaments or teams are for informational
+            purposes only.
+          </p>
         </div>
       </section>
     </>

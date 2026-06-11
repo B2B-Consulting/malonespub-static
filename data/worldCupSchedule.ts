@@ -22,77 +22,77 @@ export const worldCupMatches: WorldCupMatch[] = [
   {
     date: "2026-06-13",
     time: "14:00",
-    label: "First scheduled World Cup match",
+    label: "First scheduled international soccer match",
   },
   {
     date: "2026-06-14",
     time: "12:00",
-    label: "First scheduled World Cup match",
+    label: "First scheduled international soccer match",
   },
   {
     date: "2026-06-15",
     time: "11:00",
-    label: "First scheduled World Cup match",
+    label: "First scheduled international soccer match",
   },
   {
     date: "2026-06-16",
     time: "14:00",
-    label: "First scheduled World Cup match",
+    label: "First scheduled international soccer match",
   },
   {
     date: "2026-06-17",
     time: "12:00",
-    label: "First scheduled World Cup match",
+    label: "First scheduled international soccer match",
   },
   {
     date: "2026-06-18",
     time: "11:00",
-    label: "First scheduled World Cup match",
+    label: "First scheduled international soccer match",
   },
   {
     date: "2026-06-19",
     time: "14:00",
-    label: "First scheduled World Cup match",
+    label: "First scheduled international soccer match",
   },
   {
     date: "2026-06-20",
     time: "12:00",
-    label: "First scheduled World Cup match",
+    label: "First scheduled international soccer match",
   },
   {
     date: "2026-06-21",
     time: "11:00",
-    label: "First scheduled World Cup match",
+    label: "First scheduled international soccer match",
   },
   {
     date: "2026-06-22",
     time: "12:00",
-    label: "First scheduled World Cup match",
+    label: "First scheduled international soccer match",
   },
   {
     date: "2026-06-23",
     time: "12:00",
-    label: "First scheduled World Cup match",
+    label: "First scheduled international soccer match",
   },
   {
     date: "2026-06-24",
     time: "14:00",
-    label: "First scheduled World Cup match",
+    label: "First scheduled international soccer match",
   },
   {
     date: "2026-06-25",
     time: "15:00",
-    label: "First scheduled World Cup match",
+    label: "First scheduled international soccer match",
   },
   {
     date: "2026-06-26",
     time: "14:00",
-    label: "First scheduled World Cup match",
+    label: "First scheduled international soccer match",
   },
   {
     date: "2026-06-27",
     time: "16:00",
-    label: "First scheduled World Cup match",
+    label: "First scheduled international soccer match",
   },
   {
     date: "2026-06-28",
@@ -177,6 +177,6 @@ export const worldCupMatches: WorldCupMatch[] = [
   {
     date: "2026-07-19",
     time: "14:00",
-    label: "World Cup Final",
+    label: "Tournament final",
   },
 ];
