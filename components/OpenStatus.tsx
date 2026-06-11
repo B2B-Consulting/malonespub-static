@@ -3,13 +3,11 @@
 import { useEffect, useState } from "react";
 import { formatMalonesTime, getOpenStatus, type OpenStatusResult } from "@/lib/openStatus";
 
-function getWorldCupLabel(status: OpenStatusResult) {
+function getEarlyOpenLabel(status: OpenStatusResult) {
   if (status.source !== "worldCupEarly") return null;
 
-  if (status.state === "open") return "Open now for World Cup matches";
-  if (status.state === "open-soon") return "Opening soon for World Cup matches";
-  if (status.openTime) {
-    return `Open today at ${formatMalonesTime(status.openTime)} for World Cup matches`;
+  if (status.state === "closed" && status.openTime) {
+    return `Open today at ${formatMalonesTime(status.openTime)}`;
   }
 
   return null;
@@ -17,7 +15,7 @@ function getWorldCupLabel(status: OpenStatusResult) {
 
 export default function OpenStatus() {
   const [status, setStatus] = useState<OpenStatusResult>(() => getOpenStatus());
-  const label = getWorldCupLabel(status);
+  const label = getEarlyOpenLabel(status);
 
   useEffect(() => {
     const interval = setInterval(() => {
