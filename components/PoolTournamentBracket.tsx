@@ -78,6 +78,18 @@ const thisWeekBracketSlots: BracketState = {
   "l1-3-b": { name: "Matt", score: "" },
   "l1-4-a": { name: "Chelsey", score: "" },
   "l1-4-b": { name: "Mack", score: "" },
+  "w3-1-a": { name: "Oscar", score: "" },
+  "w3-1-b": { name: "Race", score: "" },
+  "w3-2-a": { name: "Collin", score: "" },
+  "w3-2-b": { name: "Roger", score: "" },
+  "l2-1-a": { name: "Brendan", score: "" },
+  "l2-1-b": { name: "Hank", score: "" },
+  "l2-2-a": { name: "Missy", score: "" },
+  "l2-2-b": { name: "Joe", score: "" },
+  "l2-3-a": { name: "Mack", score: "" },
+  "l2-3-b": { name: "Jeremy", score: "" },
+  "l2-4-a": { name: "Matt", score: "" },
+  "l2-4-b": { name: "Tolley", score: "" },
 };
 
 const bracketColumns: BracketColumn[] = [
