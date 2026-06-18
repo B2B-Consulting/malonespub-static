@@ -7,6 +7,7 @@ const pages = [
   { path: "/menu", changeFrequency: "monthly", priority: 0.9 },
   { path: "/pool", changeFrequency: "weekly", priority: 0.75 },
   { path: "/pool-tournament", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/darts-tournament", changeFrequency: "weekly", priority: 0.75 },
   { path: "/soccer-2026", changeFrequency: "weekly", priority: 0.75 },
   { path: "/soccer-2026-fort-worth", changeFrequency: "weekly", priority: 0.9 },
   { path: "/photos", changeFrequency: "monthly", priority: 0.7 },

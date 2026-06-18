@@ -28,6 +28,7 @@ const footerGroups = [
     title: "Events",
     links: [
       { href: "/pool-tournament", label: "Pool Tournament" },
+      { href: "/darts-tournament", label: "Darts Tournament" },
       { href: "/soccer-2026", label: "Soccer 2026" },
       { href: "/soccer-2026-fort-worth", label: "Soccer in Fort Worth" },
       { href: "/late-night-bar-fort-worth", label: "Late Night Bar Fort Worth" },

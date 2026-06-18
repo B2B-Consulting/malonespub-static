@@ -1,0 +1,85 @@
+{
+  "title": "Malone's Darts Tournament",
+  "headline": "Darts Tournament at Malone's",
+  "intro": "Casual darts tournament information for Malone's Pub in Downtown Fort Worth. Bring a friend, grab a drink, and ask the bartender about the next bracket.",
+  "details": [
+    "Open to regulars, downtown visitors, and casual players.",
+    "Singles or teams can be organized based on turnout.",
+    "House rules keep the bracket moving and the night social."
+  ],
+  "formats": [
+    {
+      "title": "501",
+      "description": "Players race down from 501. The first player or team to reach exactly zero wins the leg."
+    },
+    {
+      "title": "Cricket",
+      "description": "Players close numbers 15 through 20 and the bull, then outscore the opponent when a number is open."
+    },
+    {
+      "title": "Luck of the Draw",
+      "description": "When turnout is right, partners can be drawn at random to keep the field balanced and social."
+    }
+  ],
+  "sections": [
+    {
+      "title": "Tournament Format",
+      "rules": [
+        "Format may be singles, doubles, or luck of the draw depending on turnout.",
+        "The organizer or bartender will announce the game format before the bracket starts.",
+        "Players should be present when their match is called.",
+        "A player or team that cannot start within a reasonable time may forfeit the match.",
+        "Bracket advancement is based on match wins and losses."
+      ]
+    },
+    {
+      "title": "Match Play",
+      "rules": [
+        "Players alternate turns, throwing up to three darts per turn.",
+        "Darts must remain in the board until scored.",
+        "The scorekeeper's call should be confirmed before darts are pulled.",
+        "If a scoring mistake is caught before the next player throws, correct it immediately.",
+        "If a scoring mistake is caught later, the organizer can make the fairest ruling for the bracket."
+      ]
+    },
+    {
+      "title": "501 House Rules",
+      "rules": [
+        "Each player or team starts at 501 unless a different starting score is announced.",
+        "Scores are subtracted from the running total.",
+        "A player or team must reach exactly zero to win the leg.",
+        "If a player scores more than the remaining total, the turn is a bust and the score returns to what it was before that turn.",
+        "Double-out may be used when announced before the match."
+      ]
+    },
+    {
+      "title": "Cricket House Rules",
+      "rules": [
+        "Cricket uses numbers 15, 16, 17, 18, 19, 20, and the bull.",
+        "Three marks close a number.",
+        "A closed number can score points until the opponent closes it.",
+        "The winner is the player or team with all numbers closed and at least as many points as the opponent.",
+        "Ties and disputes should be handled by replaying the leg or asking the organizer for a ruling."
+      ]
+    },
+    {
+      "title": "Bar Etiquette",
+      "rules": [
+        "Give throwers room at the line.",
+        "Do not distract a player during a throw.",
+        "Keep drinks clear of the throwing area.",
+        "Respect the board, the bar, and the people keeping score.",
+        "Play at a pace that keeps the tournament moving."
+      ]
+    },
+    {
+      "title": "Sign Up",
+      "rules": [
+        "Ask the bartender about the next darts tournament or darts night.",
+        "Sign up at the bar when a bracket is being organized.",
+        "Arrive early enough to check in before matches start.",
+        "New players are welcome."
+      ]
+    }
+  ]
+}
