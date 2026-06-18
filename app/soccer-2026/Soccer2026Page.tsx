@@ -3,23 +3,11 @@ import Link from "next/link";
 import FaqSchema from "@/components/FaqSchema";
 import ReviewButton from "@/components/ReviewButton";
 import site from "@/content/site.json";
+import { worldCupMatches } from "@/data/worldCupSchedule";
 
 const pageUrl = "https://malonespub.com/soccer-2026";
 const directionsUrl =
   "https://www.google.com/maps/search/?api=1&query=Malone%27s+Pub+1303+Calhoun+St+Fort+Worth+TX+76102";
-
-const priorityMatches = [
-  "USA matches",
-  "Mexico matches",
-  "England matches",
-  "Brazil matches",
-  "Argentina matches",
-  "Germany matches",
-  "Japan matches",
-  "Knockout rounds",
-  "Semifinals",
-  "Tournament final",
-];
 
 const faqs = [
   {
@@ -63,6 +51,40 @@ const faqs = [
       "Yes. Malone's Pub has pool, darts, Golden Tee, Big Lebowski pinball, and a jukebox.",
   },
 ];
+
+const scheduleByDate = worldCupMatches.reduce<
+  Array<{ date: string; matches: typeof worldCupMatches }>
+>((groups, match) => {
+  const existingGroup = groups.find((group) => group.date === match.date);
+
+  if (existingGroup) {
+    existingGroup.matches.push(match);
+  } else {
+    groups.push({ date: match.date, matches: [match] });
+  }
+
+  return groups;
+}, []);
+
+function formatScheduleDate(date: string) {
+  const [year, month, day] = date.split("-").map(Number);
+
+  return new Intl.DateTimeFormat("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+  }).format(new Date(Date.UTC(year, month - 1, day, 12, 0, 0)));
+}
+
+function formatScheduleTime(time: string) {
+  const [hour, minute] = time.split(":").map(Number);
+
+  return new Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    timeZone: "UTC",
+  }).format(new Date(Date.UTC(2026, 0, 1, hour, minute, 0)));
+}
 
 export default function WorldCupPage() {
   const tel = `tel:${site.phone.replace(/[^\d+]/g, "")}`;
@@ -167,60 +189,94 @@ export default function WorldCupPage() {
         ))}
       </section>
 
-      <section id="schedule" className="border-y border-white/10 bg-neutral-900">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <p className="text-sm font-bold uppercase tracking-[0.25em] text-green-300">
-              Soccer Schedule
-            </p>
-            <h2 className="mt-3 text-3xl font-black md:text-4xl">
-              2026 Soccer Matches We Plan to Show
-            </h2>
-            <p className="mt-5 leading-8 text-neutral-300">
-              The major 2026 international soccer tournament runs from June 11
-              through July 19, 2026. Once matchups and kickoff times are final,
-              this page can list dates, countries, times, and day-of-week
-              details for Fort Worth soccer fans. For televised matches before
-              normal hours, Malone&apos;s Pub will open one hour before the first
-              match of the day.
-            </p>
+      <section
+        id="schedule"
+        className="border-y border-white/10 bg-neutral-900"
+      >
+        <div className="mx-auto max-w-6xl px-4 py-14">
+          <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr]">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.25em] text-green-300">
+                Soccer Schedule
+              </p>
+              <h2 className="mt-3 text-3xl font-black md:text-4xl">
+                2026 Soccer Matches We Plan to Show
+              </h2>
+              <p className="mt-5 leading-8 text-neutral-300">
+                The major 2026 international soccer tournament runs from June
+                11 through July 19, 2026. Kickoffs below are listed in Fort
+                Worth Central time (CST/CDT). For televised matches before
+                normal hours, Malone&apos;s Pub will open one hour before the
+                first match of the day.
+              </p>
+            </div>
 
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              {priorityMatches.map((match) => (
-                <div
-                  key={match}
-                  className="rounded-lg border border-green-400/20 bg-green-400/10 px-4 py-3 text-neutral-200"
-                >
-                  {match}
+            <div className="rounded-lg border border-white/10 bg-black/40 p-6">
+              <h3 className="text-2xl font-black">Key Dates</h3>
+              <dl className="mt-5 space-y-4 text-sm">
+                <div className="flex justify-between gap-4 border-b border-white/10 pb-3">
+                  <dt className="text-neutral-400">Tournament begins</dt>
+                  <dd className="font-bold">June 11, 2026</dd>
                 </div>
-              ))}
+                <div className="flex justify-between gap-4 border-b border-white/10 pb-3">
+                  <dt className="text-neutral-400">Group stage</dt>
+                  <dd className="font-bold">June 11-27</dd>
+                </div>
+                <div className="flex justify-between gap-4 border-b border-white/10 pb-3">
+                  <dt className="text-neutral-400">Knockout rounds</dt>
+                  <dd className="font-bold">June 28-July 19</dd>
+                </div>
+                <div className="flex justify-between gap-4">
+                  <dt className="text-neutral-400">Final match</dt>
+                  <dd className="font-bold">July 19, 2026</dd>
+                </div>
+              </dl>
             </div>
           </div>
 
-          <div className="rounded-lg border border-white/10 bg-black/40 p-6">
-            <h3 className="text-2xl font-black">Key Dates</h3>
-            <dl className="mt-5 space-y-4 text-sm">
-              <div className="flex justify-between gap-4 border-b border-white/10 pb-3">
-                <dt className="text-neutral-400">Tournament begins</dt>
-                <dd className="font-bold">June 11, 2026</dd>
+          <div className="mt-10 grid gap-5">
+            <div className="grid grid-cols-[5rem_1fr_5.5rem] gap-3 border-b border-white/10 pb-3 text-xs font-bold uppercase tracking-[0.18em] text-neutral-400 sm:grid-cols-[8rem_1fr_7rem]">
+              <span>Date</span>
+              <span>Match</span>
+              <span className="text-right">CST/CDT</span>
+            </div>
+
+            {scheduleByDate.map((group) => (
+              <div
+                key={group.date}
+                className="grid gap-3 border-b border-white/10 pb-5 last:border-b-0 last:pb-0 md:grid-cols-[8rem_1fr]"
+              >
+                <div className="text-sm font-black text-green-300">
+                  {formatScheduleDate(group.date)}
+                </div>
+                <div className="grid gap-2">
+                  {group.matches.map((match) => (
+                    <div
+                      key={`${match.date}-${match.time}-${match.homeTeam}-${match.awayTeam}`}
+                      className="grid gap-2 rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-sm sm:grid-cols-[1fr_auto] sm:items-center"
+                    >
+                      <div>
+                        <div className="font-bold text-white">
+                          {match.homeTeam} vs {match.awayTeam}
+                        </div>
+                        <div className="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-neutral-500">
+                          {match.label}
+                        </div>
+                      </div>
+                      <div className="font-black text-green-300 sm:text-right">
+                        {formatScheduleTime(match.time)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="flex justify-between gap-4 border-b border-white/10 pb-3">
-                <dt className="text-neutral-400">Group stage</dt>
-                <dd className="font-bold">June 11-27</dd>
-              </div>
-              <div className="flex justify-between gap-4 border-b border-white/10 pb-3">
-                <dt className="text-neutral-400">Knockout rounds</dt>
-                <dd className="font-bold">June 28-July 19</dd>
-              </div>
-              <div className="flex justify-between gap-4">
-                <dt className="text-neutral-400">Final match</dt>
-                <dd className="font-bold">July 19, 2026</dd>
-              </div>
-            </dl>
-            <p className="mt-5 text-sm text-neutral-400">
-              Check back as the televised soccer schedule gets closer.
-            </p>
+            ))}
           </div>
+
+          <p className="mt-8 text-xs leading-5 text-neutral-500">
+            Schedule details can change as tournament and broadcast updates are
+            released.
+          </p>
         </div>
       </section>
 
