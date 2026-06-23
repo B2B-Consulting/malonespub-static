@@ -90,6 +90,14 @@ const thisWeekBracketSlots: BracketState = {
   "l2-3-b": { name: "Tolley", score: "" },
   "l2-4-a": { name: "Matt", score: "" },
   "l2-4-b": { name: "Hank", score: "" },
+  "w4-1-a": { name: "Oscar", score: "" },
+  "w4-1-b": { name: "Collin", score: "" },
+  "l3-1-a": { name: "Brendan", score: "" },
+  "l3-1-b": { name: "Matt", score: "" },
+  "l3-2-a": { name: "Tolley", score: "" },
+  "l3-2-b": { name: "Joe", score: "" },
+  "l4-1-b": { name: "Race", score: "" },
+  "l4-2-b": { name: "Roger", score: "" },
 };
 
 const bracketColumns: BracketColumn[] = [
