@@ -1,0 +1,42 @@
+{
+  "usa": {
+    "displayName": "USA",
+    "asset": "usa.svg"
+  },
+  "mexico": {
+    "displayName": "Mexico",
+    "asset": "mexico.svg"
+  },
+  "south-korea": {
+    "displayName": "South Korea",
+    "asset": "south-korea.svg"
+  },
+  "czechia": {
+    "displayName": "Czechia",
+    "asset": "czechia.svg"
+  },
+  "spain": {
+    "displayName": "Spain",
+    "asset": "spain.svg"
+  },
+  "cape-verde": {
+    "displayName": "Cape Verde",
+    "asset": "cape-verde.svg"
+  },
+  "brazil": {
+    "displayName": "Brazil",
+    "asset": "brazil.svg"
+  },
+  "argentina": {
+    "displayName": "Argentina",
+    "asset": "argentina.svg"
+  },
+  "england": {
+    "displayName": "England",
+    "asset": "england.svg"
+  },
+  "germany": {
+    "displayName": "Germany",
+    "asset": "germany.svg"
+  }
+}
