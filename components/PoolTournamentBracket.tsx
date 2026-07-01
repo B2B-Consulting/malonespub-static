@@ -100,6 +100,8 @@ const thisWeekBracketSlots: BracketState = {
   "l4-1-b": { name: "Race", score: "" },
   "l4-2-a": { name: "Joe", score: "" },
   "l4-2-b": { name: "Roger", score: "" },
+  "l5-1-a": { name: "Matt", score: "" },
+  "l5-1-b": { name: "Joe", score: "" },
   "l6-1-b": { name: "Collin", score: "" },
   "g1-a": { name: "Oscar", score: "" },
 };
