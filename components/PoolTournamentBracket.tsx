@@ -106,6 +106,8 @@ const thisWeekBracketSlots: BracketState = {
   "l6-1-b": { name: "Collin", score: "" },
   "g1-a": { name: "Oscar", score: "" },
   "g1-b": { name: "Collin", score: "" },
+  "g2-a": { name: "Oscar", score: "" },
+  "g2-b": { name: "Collin", score: "" },
 };
 
 const bracketColumns: BracketColumn[] = [
