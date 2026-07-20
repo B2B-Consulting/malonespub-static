@@ -35,8 +35,6 @@ export const metadata: Metadata = {
     "pinball bar Fort Worth",
     "Guinness Fort Worth",
     "bar food Fort Worth",
-    "soccer bar Fort Worth",
-    "2026 soccer tournament Fort Worth",
   ],
   robots: {
     index: true,

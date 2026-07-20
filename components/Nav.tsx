@@ -6,7 +6,6 @@ const links = [
   { href: "/menu", label: "Menu" },
   { href: "/pool-tournament", label: "Pool" },
   { href: "/darts-tournament", label: "Darts" },
-  { href: "/soccer-2026", label: "Soccer 2026" },
   { href: "/photos", label: "Photos" },
   { href: "/merch", label: "Merch" },
   { href: "/contact", label: "Contact" },

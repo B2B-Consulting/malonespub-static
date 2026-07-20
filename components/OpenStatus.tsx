@@ -1,21 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { formatMalonesTime, getOpenStatus, type OpenStatusResult } from "@/lib/openStatus";
-
-function getEarlyOpenLabel(status: OpenStatusResult) {
-  if (status.source !== "worldCupEarly") return null;
-
-  if (status.state === "closed" && status.openTime) {
-    return `Open today at ${formatMalonesTime(status.openTime)}`;
-  }
-
-  return null;
-}
+import { getOpenStatus, type OpenStatusResult } from "@/lib/openStatus";
 
 export default function OpenStatus() {
   const [status, setStatus] = useState<OpenStatusResult>(() => getOpenStatus());
-  const label = getEarlyOpenLabel(status);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,17 +19,17 @@ export default function OpenStatus() {
       {status.state === "open" ? (
         <div className="inline-flex items-center gap-2 rounded-full bg-green-600/20 px-4 py-2 font-semibold text-green-400">
           <span className="h-2 w-2 rounded-full bg-green-400" />
-          {label ?? "Open Now"}
+          Open Now
         </div>
       ) : status.state === "open-soon" ? (
         <div className="inline-flex items-center gap-2 rounded-full bg-amber-600/20 px-4 py-2 font-semibold text-amber-400">
           <span className="h-2 w-2 rounded-full bg-amber-400" />
-          {label ?? "Open Soon"}
+          Open Soon
         </div>
       ) : (
         <div className="inline-flex items-center gap-2 rounded-full bg-red-600/20 px-4 py-2 font-semibold text-red-400">
           <span className="h-2 w-2 rounded-full bg-red-400" />
-          {label ?? "Closed"}
+          Closed
         </div>
       )}
     </div>

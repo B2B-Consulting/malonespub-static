@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "generate:cup-matchups": "node scripts/generate-cup-matchups.mjs"
+    "lint": "eslint"
   },
   "dependencies": {
     "next": "16.1.6",

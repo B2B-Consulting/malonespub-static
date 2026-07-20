@@ -1,27 +1,17 @@
-import { worldCupMatches } from "@/data/worldCupSchedule";
 import site from "@/content/site.json";
 
 export type OpenState = "open" | "open-soon" | "closed";
-export type OpenTimeSource = "regular" | "worldCupEarly";
 
 type DayKey = keyof typeof site.hours;
-
-export type EffectiveOpenTime = {
-  openTime: Date;
-  source: OpenTimeSource;
-};
 
 export type OpenStatusResult = {
   state: OpenState;
   openTime: Date | null;
   closeTime: Date | null;
-  source: OpenTimeSource;
 };
 
 const MALONES_TIME_ZONE = "America/Chicago";
 const OPEN_SOON_MINUTES = 90;
-const WORLD_CUP_START_DATE = "2026-06-11";
-const WORLD_CUP_END_DATE = "2026-07-19";
 const dayMap = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"] as const;
 
 function getZonedDateParts(date: Date) {
@@ -111,56 +101,8 @@ function getRegularWindowForDate(date: string) {
   return { openTime, closeTime };
 }
 
-function isWorldCupDate(date: string) {
-  return date >= WORLD_CUP_START_DATE && date <= WORLD_CUP_END_DATE;
-}
-
-function getFirstWorldCupMatchTime(date: string) {
-  const matches = worldCupMatches
-    .filter((match) => match.date === date)
-    .map((match) => toMalonesDateTime(match.date, match.time))
-    .sort((a, b) => a.getTime() - b.getTime());
-
-  return matches[0] ?? null;
-}
-
-function getEffectiveOpenTimeForDate(date: string): EffectiveOpenTime | null {
-  const regularWindow = getRegularWindowForDate(date);
-  if (!regularWindow) return null;
-
-  if (!isWorldCupDate(date)) {
-    return { openTime: regularWindow.openTime, source: "regular" };
-  }
-
-  const firstMatchTime = getFirstWorldCupMatchTime(date);
-  if (!firstMatchTime) {
-    return { openTime: regularWindow.openTime, source: "regular" };
-  }
-
-  const worldCupOpenTime = new Date(firstMatchTime.getTime() - 60 * 60 * 1000);
-
-  if (worldCupOpenTime < regularWindow.openTime) {
-    return { openTime: worldCupOpenTime, source: "worldCupEarly" };
-  }
-
-  return { openTime: regularWindow.openTime, source: "regular" };
-}
-
-export function getEffectiveOpenTime(now: Date): EffectiveOpenTime | null {
-  return getEffectiveOpenTimeForDate(getMalonesDateString(now));
-}
-
 function buildOpenCloseForDate(date: string) {
-  const regularWindow = getRegularWindowForDate(date);
-  if (!regularWindow) return null;
-
-  const effectiveOpenTime = getEffectiveOpenTimeForDate(date);
-
-  return {
-    openTime: effectiveOpenTime?.openTime ?? regularWindow.openTime,
-    closeTime: regularWindow.closeTime,
-    source: effectiveOpenTime?.source ?? "regular",
-  };
+  return getRegularWindowForDate(date);
 }
 
 export function getOpenStatus(now = new Date()): OpenStatusResult {
@@ -179,7 +121,6 @@ export function getOpenStatus(now = new Date()): OpenStatusResult {
       state: "open",
       openTime: yesterdayWindow.openTime,
       closeTime: yesterdayWindow.closeTime,
-      source: yesterdayWindow.source,
     };
   }
 
@@ -188,7 +129,6 @@ export function getOpenStatus(now = new Date()): OpenStatusResult {
       state: "open",
       openTime: todayWindow.openTime,
       closeTime: todayWindow.closeTime,
-      source: todayWindow.source,
     };
   }
 
@@ -202,7 +142,6 @@ export function getOpenStatus(now = new Date()): OpenStatusResult {
         state: "open-soon",
         openTime: todayWindow.openTime,
         closeTime: todayWindow.closeTime,
-        source: todayWindow.source,
       };
     }
   }
@@ -211,14 +150,5 @@ export function getOpenStatus(now = new Date()): OpenStatusResult {
     state: "closed",
     openTime: todayWindow?.openTime ?? null,
     closeTime: todayWindow?.closeTime ?? null,
-    source: todayWindow?.source ?? "regular",
   };
-}
-
-export function formatMalonesTime(date: Date) {
-  return new Intl.DateTimeFormat("en-US", {
-    timeZone: MALONES_TIME_ZONE,
-    hour: "numeric",
-    minute: "2-digit",
-  }).format(date);
 }

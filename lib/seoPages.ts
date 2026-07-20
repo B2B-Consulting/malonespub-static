@@ -498,65 +498,6 @@ export const seoPages: Record<string, SeoLandingPage> = {
       },
     ],
   },
-  "soccer-2026-fort-worth": {
-    slug: "soccer-2026-fort-worth",
-    title: "Soccer 2026 Fort Worth",
-    metaTitle: "World Cup Watch Party Fort Worth",
-    description:
-      "Looking for where to watch World Cup games in Fort Worth? Malone's Pub is an independent Downtown Fort Worth soccer bar for major 2026 international matches, Guinness, games, and bar food.",
-    eyebrow: "Soccer 2026 Fort Worth",
-    h1: "Where to Watch World Cup Games in Fort Worth",
-    intro:
-      "Malone's Pub is an independent Downtown Fort Worth bar for watching major 2026 international soccer matches with Guinness, cold beer, games, bar food, and a laid-back pub crowd.",
-    image: mainImages.interior,
-    imageAlt: "Interior of Malone's Pub in Downtown Fort Worth",
-    related: ["soccer-2026", "menu", "photos", "contact"],
-    sections: [
-      {
-        heading: "A Downtown Fort Worth Soccer Bar for Big Matches",
-        body: [
-          "If you are searching for World Cup watch party Fort Worth or where to watch World Cup games in Fort Worth, Malone's Pub is a practical local answer: a Downtown Fort Worth Irish pub and dive bar with TVs, Guinness, cold beer, bar food, and games.",
-          "Malone's is independent and is not affiliated with, sponsored by, endorsed by, or officially connected to FIFA or the World Cup. The page uses those terms descriptively so soccer fans can find a local bar for televised matches.",
-          evergreen.address,
-        ],
-      },
-      {
-        heading: "Beer, Guinness, Games, and a Pub Crowd",
-        body: [
-          "Big soccer matches are better in a room that feels like a pub. Malone's brings the basics: Guinness, cold beer, cocktails, pool, darts, Golden Tee, Big Lebowski pinball, jukebox, and simple bar food.",
-          "As the 2026 schedule becomes clearer, the Soccer 2026 page can be updated with match dates, countries, and kickoff times.",
-          evergreen.vibe,
-        ],
-      },
-    ],
-    faqs: [
-      {
-        question: "Where can I watch World Cup games in Fort Worth?",
-        answer:
-          "Malone's Pub in Downtown Fort Worth is a local bar for watching major international soccer matches near Sundance Square.",
-      },
-      {
-        question: "Is Malone's Pub officially affiliated with FIFA or the World Cup?",
-        answer:
-          "No. Malone's Pub is independent and is not affiliated with, sponsored by, endorsed by, or officially connected to FIFA or the World Cup.",
-      },
-      {
-        question: "Does Malone's serve Guinness for soccer matches?",
-        answer:
-          "Yes. Malone's serves Guinness Pub Draught along with beer, cocktails, wine, and non-alcoholic options.",
-      },
-      {
-        question: "Is Malone's near Sundance Square?",
-        answer:
-          "Yes. Malone's is in Downtown Fort Worth near Sundance Square.",
-      },
-      {
-        question: "Does Malone's have bar games too?",
-        answer:
-          "Yes. Malone's has pool, darts, Golden Tee, pinball, and a jukebox.",
-      },
-    ],
-  },
 };
 
 export function getSeoPage(slug: string) {
