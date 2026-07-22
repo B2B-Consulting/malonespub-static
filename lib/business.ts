@@ -21,7 +21,7 @@ export const BUSINESS = {
     "Downtown Fort Worth Irish pub and neighborhood dive bar with Guinness, pool, darts, Golden Tee, Big Lebowski pinball, jukebox, and bar food.",
   hours: {
     weekday: "Mon-Fri: 3pm-2am",
-    weekend: "Sat-Sun: 12pm-2am",
+    weekend: "Sat-Sun: 2pm-2am",
   },
 } as const;
 
