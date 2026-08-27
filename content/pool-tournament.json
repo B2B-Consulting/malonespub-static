@@ -5,7 +5,7 @@
   "details": [
     "Double-elimination bracket: a player is eliminated after 2 match losses.",
     "Matches are Best of 3 games of 8-ball.",
-    "Games are played on Malone's coin-operated pool table."
+    "Malone's coin-operated pool table will be unlocked for tournament matches so balls can be retrieved and spotted when required."
   ],
   "sections": [
     {
@@ -76,7 +76,7 @@
       "title": "After the Break",
       "rules": [
         "If no balls are pocketed, it is the other player's turn.",
-        "If the 8-ball is pocketed on the break, the game is reracked and replayed because the table is coin operated.",
+        "If the 8-ball is pocketed on the break, the game is reracked and replayed.",
         "If one ball is pocketed, it is still the breaker's turn, but the table remains open until a designated ball and pocket is declared and made.",
         "If that next shot is not successful, the table remains open.",
         "The 8-ball is neutral when the table is open and may be used in a combination shot.",
@@ -98,7 +98,7 @@
       "rules": [
         "If the 8-ball is knocked on the floor, it is loss of game.",
         "An object ball knocked on the floor results in a foul.",
-        "Because the table is coin operated, object balls are not spotted unless they are immediately available without opening the table."
+        "An object ball other than the 8-ball that is knocked on the floor is retrieved and spotted on the foot spot after the shot."
       ]
     },
     {
@@ -111,18 +111,19 @@
       "title": "Pocketed Balls",
       "rules": [
         "Balls must remain in a pocket to be legal.",
-        "All pocketed balls remain in the pocket for the rest of the game.",
-        "Do not open the coin-operated table during a game to retrieve or spot balls."
+        "Legally pocketed balls remain down unless another rule specifically requires a ball to be retrieved, spotted, or used in a rerack.",
+        "The table will remain unlocked for tournament matches, so players may retrieve balls whenever these rules require it."
       ]
     },
     {
-      "title": "Coin-Operated Table Rules",
+      "title": "Tournament Table Access & Spotting",
       "rules": [
-        "Rules that normally require spotting a pocketed ball are adjusted because the table is coin operated.",
-        "If a pocketed ball cannot be retrieved without opening the table, it stays down.",
+        "Although Malone's table is normally coin operated, it will be unlocked for tournament matches.",
+        "A pocketed ball may be retrieved whenever these rules require it to be spotted or used in a rerack.",
+        "A ball that must be spotted is placed on the foot spot; if that spot is occupied, place it on the long string as close to the foot spot as possible toward the foot rail.",
         "If the 8-ball is pocketed early, out of turn, or on an illegal shot, it is loss of game unless these rules specifically say to rerack and replay.",
         "If the 8-ball is pocketed on the break, rerack and replay the game.",
-        "Players should agree on any coin-table situation before the next shot is taken."
+        "Players should resolve any retrieval or spotting question before the next shot is taken; the tournament organizer makes the final ruling if they disagree."
       ]
     },
     {

@@ -18,5 +18,13 @@ describe("legacy tournament snapshot", () => {
     expect(active.entryFee).toBe("$25");
     expect(active.prizeInformation).toBe("First place: $300. Second place: $100.");
     expect(active.rules.filter((rule) => rule.startsWith("Weekly Match Scheduling:"))).toHaveLength(6);
+    expect(active.rules).toContain(
+      "Tournament Table Access & Spotting: Although Malone's table is normally coin operated, it will be unlocked for tournament matches.",
+    );
+    expect(active.rules).toContain(
+      "Balls on the Floor: An object ball other than the 8-ball that is knocked on the floor is retrieved and spotted on the foot spot after the shot.",
+    );
+    expect(active.rules.some((rule) => rule.includes("cannot be retrieved"))).toBe(false);
+    expect(active.rules.some((rule) => rule.includes("Do not open the coin-operated table"))).toBe(false);
   });
 });
