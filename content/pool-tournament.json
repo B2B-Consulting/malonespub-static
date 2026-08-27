@@ -166,6 +166,17 @@
       ]
     },
     {
+      "title": "Weekly Match Scheduling",
+      "rules": [
+        "Each assigned matchup has one weekly playing window, Monday through Sunday.",
+        "After a matchup is assigned, both players are responsible for contacting each other and agreeing on a time to play during that window.",
+        "Each player is responsible for scheduling only the current assigned matchup; future-round matches do not need to be scheduled in advance.",
+        "The assigned match must be completed by the end of Sunday before the next weekly matchup begins.",
+        "A player who does not respond, does not make a reasonable effort to schedule, or does not appear at the agreed time may receive a 2-0 forfeit loss.",
+        "Scheduling problems must be reported to the tournament organizer before the Sunday deadline; the organizer decides forfeits when responsibility is disputed."
+      ]
+    },
+    {
       "title": "Reporting Scores",
       "rules": [
         "The winner is responsible for reporting the final score to the bartender or organizer.",
