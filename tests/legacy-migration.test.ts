@@ -15,6 +15,8 @@ describe("legacy tournament snapshot", () => {
   it("does not embed the archived bracket in the active tournament", () => {
     const active = getInitialActiveTournament();
     expect(active.legacyBracket).toBeUndefined();
+    expect(active.entryFee).toBe("$25");
+    expect(active.prizeInformation).toBe("First place: $300. Second place: $100.");
     expect(active.rules.filter((rule) => rule.startsWith("Weekly Match Scheduling:"))).toHaveLength(6);
   });
 });
