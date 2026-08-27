@@ -10,8 +10,11 @@ describe("legacy tournament snapshot", () => {
     expect(archived.status).toBe("Archived");
     expect(archived.isPublic).toBe(false);
     expect(archived.registrationStatus).toBe("Closed");
+    expect(archived.rules.some((rule) => rule.startsWith("Weekly Match Scheduling:"))).toBe(false);
   });
   it("does not embed the archived bracket in the active tournament", () => {
-    expect(getInitialActiveTournament().legacyBracket).toBeUndefined();
+    const active = getInitialActiveTournament();
+    expect(active.legacyBracket).toBeUndefined();
+    expect(active.rules.filter((rule) => rule.startsWith("Weekly Match Scheduling:"))).toHaveLength(6);
   });
 });

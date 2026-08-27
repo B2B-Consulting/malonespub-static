@@ -92,6 +92,12 @@ const rules = tournamentRules.sections.flatMap((section) =>
   section.rules.map((rule) => `${section.title}: ${rule}`),
 );
 
+const archivedRules = tournamentRules.sections
+  .filter((section) => section.title !== "Weekly Match Scheduling")
+  .flatMap((section) =>
+    section.rules.map((rule) => `${section.title}: ${rule}`),
+  );
+
 export function getArchivedTournament(scores: Record<string, { score?: string }> = {}): PoolTournament {
   return {
     id: LEGACY_TOURNAMENT_ID,
@@ -103,7 +109,7 @@ export function getArchivedTournament(scores: Record<string, { score?: string }>
     entryFee: "Not recorded",
     maxPlayers: 16,
     format: "Double elimination; best 2 out of 3 games of 8-ball",
-    rules,
+    rules: archivedRules,
     prizeInformation: "Not recorded",
     registrationStatus: "Closed",
     status: "Archived",
