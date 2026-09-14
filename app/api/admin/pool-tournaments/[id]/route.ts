@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { hasValidMutationOrigin, isPoolAdminAuthenticated } from "@/lib/pool-tournaments/auth";
-import { getTournament, listRegistrations, setActiveTournament, updateTournament } from "@/lib/pool-tournaments/store";
+import { drawTournamentBracket, getTournament, listRegistrations, saveTournamentMatch, setActiveTournament, updateTournament } from "@/lib/pool-tournaments/store";
 import { validateTournamentInput } from "@/lib/pool-tournaments/validation";
 
 type Context = { params: Promise<{ id: string }> };
@@ -21,6 +21,16 @@ export async function PUT(request: Request, { params }: Context) {
   let body: Record<string, unknown>;
   try { body = (await request.json()) as Record<string, unknown>; } catch { return NextResponse.json({ error: "Invalid tournament details." }, { status: 400 }); }
   try {
+    if (body.action === "draw" || body.action === "score") {
+      try {
+        const tournament = body.action === "draw"
+          ? await drawTournamentBracket(id)
+          : await saveTournamentMatch(id, typeof body.matchId === "string" ? body.matchId : "", body.a, body.b, typeof body.drawnAt === "string" ? body.drawnAt : "");
+        return NextResponse.json({ tournament }, { headers: { "Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow" } });
+      } catch (error) {
+        return NextResponse.json({ error: error instanceof Error ? error.message : "Unable to update bracket." }, { status: 409 });
+      }
+    }
     if (body.action === "activate") {
       const tournament = await setActiveTournament(id);
       return tournament ? NextResponse.json({ tournament }) : NextResponse.json({ error: "Tournament cannot be activated." }, { status: 400 });

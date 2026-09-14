@@ -16,6 +16,18 @@ export type BracketSlot = {
   score: string;
 };
 
+export type TournamentBracket = {
+  drawnAt: string;
+  players: { registrationId: string; name: string }[];
+  results: Record<string, { a: number; b: number }>;
+};
+
+export type PublicTournamentBracket = {
+  drawnAt: string;
+  slots: Record<string, BracketSlot>;
+  champion: string | null;
+};
+
 export type PoolTournament = {
   id: string;
   slug: string;
@@ -35,6 +47,7 @@ export type PoolTournament = {
   createdAt: string;
   archivedAt: string | null;
   legacyBracket?: Record<string, BracketSlot>;
+  bracket?: TournamentBracket;
 };
 
 export type PoolRegistration = {
@@ -51,9 +64,10 @@ export type PoolRegistration = {
 
 export type PublicPoolTournament = Omit<
   PoolTournament,
-  "legacyBracket" | "slug" | "isActivePublic" | "archivedAt" | "createdAt"
+  "legacyBracket" | "bracket" | "slug" | "isActivePublic" | "archivedAt" | "createdAt"
 > & {
   availableSpots: number;
+  bracket?: PublicTournamentBracket;
 };
 
 export type TournamentInput = Pick<

@@ -1,7 +1,7 @@
-import { defineConfig } from "vitest/config";
+import { configDefaults, defineConfig } from "vitest/config";
 import { fileURLToPath } from "node:url";
 
 export default defineConfig({
   resolve: { alias: { "@": fileURLToPath(new URL(".", import.meta.url)) } },
-  test: { environment: "node", restoreMocks: true },
+  test: { environment: "node", restoreMocks: true, exclude: [...configDefaults.exclude, "**/.vercel/**"] },
 });

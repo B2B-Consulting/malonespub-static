@@ -1,4 +1,5 @@
-import { createHash, createHmac, randomUUID } from "node:crypto";
+import { createHash, createHmac, randomInt, randomUUID } from "node:crypto";
+import { publicBracket, recordMatchResult } from "@/lib/pool-tournaments/bracket";
 import {
   ACTIVE_TOURNAMENT_ID,
   getArchivedTournament,
@@ -13,6 +14,7 @@ import type {
   PublicPoolTournament,
   RegistrationInput,
   TournamentInput,
+  TournamentBracket,
 } from "@/lib/pool-tournaments/types";
 
 const PREFIX = "malones:pool:v1";
@@ -40,6 +42,14 @@ export function requestIdentity(request: Request) {
   const forwarded = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
   const ip = forwarded || request.headers.get("x-real-ip") || "unknown";
   return createHash("sha256").update(ip).digest("hex");
+}
+
+export async function allowPublicScoreAttempt(identity: string) {
+  if (!isPoolDatabaseConfigured()) return true;
+  const key = `${PREFIX}:score-rate:${identity}`;
+  const attempts = await poolRedisCommand<number>(["INCR", key]);
+  if (attempts === 1) await poolRedisCommand(["EXPIRE", key, 600]);
+  return attempts <= 30;
 }
 
 export async function allowAdminLoginAttempt(identity: string) {
@@ -97,18 +107,28 @@ export async function listRegistrations(tournamentId: string) {
 
 export async function getPublicTournament(): Promise<PublicPoolTournament | null> {
   if (!isPoolDatabaseConfigured()) {
-    return { ...getInitialActiveTournament(), availableSpots: 16 };
+    return toPublicTournament(getInitialActiveTournament(), 0);
   }
   await ensurePoolTournamentData();
   const activeId = await poolRedisCommand<string | null>(["GET", ACTIVE_KEY]);
   if (!activeId) return null;
-  const tournament = await getTournament(activeId);
+  let tournament = await getTournament(activeId);
   if (!tournament || !tournament.isPublic || tournament.status === "Archived") return null;
   const registrations = await listRegistrations(tournament.id);
   const activeCount = registrations.filter((entry) => entry.status === "Registered").length;
-  const { legacyBracket: _legacyBracket, slug: _slug, archivedAt: _archivedAt, createdAt: _createdAt, isActivePublic: _isActivePublic, ...safe } = tournament;
+  // One-time rollout for the full second tournament requested by the organizer.
+  // Future tournament IDs continue to use the authenticated dashboard draw action.
+  if (activeId === ACTIVE_TOURNAMENT_ID && !tournament.bracket && tournament.maxPlayers === 16 && activeCount === 16 &&
+    (tournament.status === "Registration Open" || tournament.status === "Registration Closed")) {
+    tournament = await drawTournamentBracket(activeId);
+  }
+  return toPublicTournament(tournament, activeCount);
+}
+
+function toPublicTournament(tournament: PoolTournament, activeCount: number): PublicPoolTournament {
+  const { legacyBracket: _legacyBracket, bracket, slug: _slug, archivedAt: _archivedAt, createdAt: _createdAt, isActivePublic: _isActivePublic, ...safe } = tournament;
   void _legacyBracket; void _slug; void _archivedAt; void _createdAt; void _isActivePublic;
-  return { ...safe, availableSpots: Math.max(0, tournament.maxPlayers - activeCount) };
+  return { ...safe, availableSpots: Math.max(0, tournament.maxPlayers - activeCount), ...(bracket ? { bracket: publicBracket(bracket) } : {}) };
 }
 
 const REGISTER_SCRIPT = `
@@ -120,7 +140,7 @@ if not active then return 'CLOSED' end
 local raw = redis.call('GET', KEYS[1])
 if not raw then return 'CLOSED' end
 local tournament = cjson.decode(raw)
-if active ~= tournament.id or tournament.isPublic ~= true or tournament.registrationStatus ~= 'Open' or tournament.status == 'Archived' then return 'CLOSED' end
+if active ~= tournament.id or tournament.isPublic ~= true or tournament.registrationStatus ~= 'Open' or tournament.status == 'Archived' or tournament.bracket then return 'CLOSED' end
 if redis.call('HEXISTS', KEYS[4], ARGV[2]) == 1 or redis.call('HEXISTS', KEYS[5], ARGV[3]) == 1 then return 'DUPLICATE' end
 local count = 0
 for _, registrationRaw in ipairs(redis.call('HVALS', KEYS[3])) do
@@ -174,12 +194,89 @@ export async function updateTournament(id: string, input: TournamentInput) {
     ...existing,
     ...input,
     isPublic: isArchived ? false : input.isPublic,
-    registrationStatus: isArchived ? "Closed" : input.registrationStatus,
+    registrationStatus: isArchived || existing.bracket ? "Closed" : input.registrationStatus,
     isActivePublic: isArchived ? false : existing.isActivePublic,
     archivedAt: isArchived ? existing.archivedAt ?? new Date().toISOString() : null,
   };
-  await poolRedisCommand(["SET", tournamentKey(id), JSON.stringify(next)]);
+  // Keep a draw or score saved concurrently with an edit to tournament details.
+  const saved = await poolRedisCommand<string>(["EVAL", `
+local current = cjson.decode(redis.call('GET', KEYS[1]))
+local next = cjson.decode(ARGV[1])
+if current.bracket then
+  next.bracket = current.bracket
+  next.registrationStatus = 'Closed'
+end
+local encoded = cjson.encode(next)
+redis.call('SET', KEYS[1], encoded)
+return encoded
+`, 1, tournamentKey(id), JSON.stringify(next)]);
   if (isArchived && existing.isActivePublic) await poolRedisCommand(["DEL", ACTIVE_KEY]);
+  return JSON.parse(saved) as PoolTournament;
+}
+
+const DRAW_BRACKET_SCRIPT = `
+local raw = redis.call('GET', KEYS[1])
+if not raw then return 'MISSING' end
+local tournament = cjson.decode(raw)
+if tournament.bracket then return raw end
+if redis.call('GET', KEYS[2]) ~= tournament.id or tournament.isPublic ~= true or tournament.status == 'Archived' or tournament.status == 'Completed' then return 'INACTIVE' end
+if tournament.maxPlayers ~= 16 then return 'SIZE' end
+local count = 0
+for _, rawPlayer in ipairs(redis.call('HVALS', KEYS[3])) do
+  if cjson.decode(rawPlayer).status == 'Registered' then count = count + 1 end
+end
+if count ~= 16 then return 'SIZE' end
+local bracket = cjson.decode(ARGV[1])
+for _, player in ipairs(bracket.players) do
+  local registrationRaw = redis.call('HGET', KEYS[3], player.registrationId)
+  if not registrationRaw then return 'CHANGED' end
+  local registration = cjson.decode(registrationRaw)
+  if registration.status ~= 'Registered' or registration.name ~= player.name then return 'CHANGED' end
+end
+tournament.bracket = bracket
+tournament.registrationStatus = 'Closed'
+tournament.status = 'Registration Closed'
+local encoded = cjson.encode(tournament)
+redis.call('SET', KEYS[1], encoded)
+return encoded
+`;
+
+export async function drawTournamentBracket(id: string) {
+  if (!isPoolDatabaseConfigured()) throw new Error("Tournament database is not configured.");
+  const tournament = await getTournament(id);
+  if (!tournament) throw new Error("Tournament not found.");
+  if (tournament.bracket) return tournament;
+  const players = (await listRegistrations(id))
+    .filter((entry) => entry.status === "Registered")
+    .map((entry) => ({ registrationId: entry.id, name: entry.name }));
+  if (tournament.maxPlayers !== 16 || players.length !== 16) throw new Error("This bracket requires exactly 16 registered players.");
+  // Fisher–Yates with unbiased cryptographic integers. Save once; never shuffle on reads.
+  for (let index = players.length - 1; index > 0; index--) {
+    const other = randomInt(index + 1);
+    [players[index], players[other]] = [players[other], players[index]];
+  }
+  const bracket: TournamentBracket = { drawnAt: new Date().toISOString(), players, results: {} };
+  const result = await poolRedisCommand<string>(["EVAL", DRAW_BRACKET_SCRIPT, 3, tournamentKey(id), ACTIVE_KEY, registrationKey(id), JSON.stringify(bracket)]);
+  if (result === "SIZE") throw new Error("This bracket requires exactly 16 registered players.");
+  if (result === "CHANGED") throw new Error("The player list changed. Please try the draw again.");
+  if (result === "MISSING" || result === "INACTIVE") throw new Error("Only the active public tournament can be drawn.");
+  return JSON.parse(result) as PoolTournament;
+}
+
+export async function saveTournamentMatch(id: string, matchId: string, a: unknown, b: unknown, expectedDrawnAt: string) {
+  if (!isPoolDatabaseConfigured()) throw new Error("Tournament database is not configured.");
+  const raw = await poolRedisCommand<string | null>(["GET", tournamentKey(id)]);
+  const tournament = parseJson<PoolTournament>(raw);
+  if (!tournament?.bracket || tournament.status === "Archived") throw new Error("An active bracket is required.");
+  if (tournament.bracket.drawnAt !== expectedDrawnAt) throw new Error("The bracket changed. Reload before saving.");
+  const bracket = recordMatchResult(tournament.bracket, matchId, a, b);
+  const next: PoolTournament = { ...tournament, bracket, registrationStatus: "Closed", status: publicBracket(bracket).champion ? "Completed" : "In Progress" };
+  const saved = await poolRedisCommand<number>(["EVAL", `
+if redis.call('GET', KEYS[1]) ~= ARGV[1] then return 0 end
+redis.call('SET', KEYS[1], ARGV[2])
+return 1
+`, 1, tournamentKey(id), raw, JSON.stringify(next)]);
+  if (!saved) throw new Error("The tournament changed while saving. Reload and try again.");
   return next;
 }
 

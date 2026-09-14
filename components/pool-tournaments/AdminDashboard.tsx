@@ -1,5 +1,8 @@
 "use client";
 
+import PoolTournamentBracket from "@/components/PoolTournamentBracket";
+import { publicBracket } from "@/lib/pool-tournaments/bracket";
+
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import AdminLegacyBracket from "@/components/pool-tournaments/AdminLegacyBracket";
@@ -29,6 +32,23 @@ export default function AdminDashboard({ initialTournaments, initialRegistration
   const [tournaments, setTournaments] = useState(initialTournaments);
   const [registrations, setRegistrations] = useState(initialRegistrations);
   const [message, setMessage] = useState("");
+  const [drawing, setDrawing] = useState(false);
+
+  async function drawBracket(id: string) {
+    setDrawing(true); setMessage("");
+    try {
+      const body = await jsonRequest(`/api/admin/pool-tournaments/${id}`, { method: "PUT", body: JSON.stringify({ action: "draw" }) });
+      replaceTournament(body.tournament as PoolTournament);
+      setMessage("First-round matchups drawn and saved. Registration is closed and the bracket is on the pool page.");
+    } catch (error) { setMessage(error instanceof Error ? error.message : "Unable to draw bracket."); }
+    finally { setDrawing(false); }
+  }
+
+  async function saveMatch(tournament: PoolTournament, matchId: string, a: number, b: number) {
+    const body = await jsonRequest(`/api/admin/pool-tournaments/${tournament.id}`, { method: "PUT", body: JSON.stringify({ action: "score", matchId, a, b, drawnAt: tournament.bracket?.drawnAt }) });
+    replaceTournament(body.tournament as PoolTournament);
+    setMessage("Score saved. The public bracket has been updated.");
+  }
 
   function replaceTournament(next: PoolTournament) { setTournaments((current) => current.map((item) => item.id === next.id ? next : { ...item, isActivePublic: next.isActivePublic ? false : item.isActivePublic })); }
   async function saveTournament(event: FormEvent<HTMLFormElement>, id?: string) {
@@ -94,6 +114,20 @@ export default function AdminDashboard({ initialTournaments, initialRegistration
               </details>
 
               {tournament.isActivePublic ? <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4"><h3 className="font-black">Evergreen flyer QR code</h3><p className="mt-1 text-sm text-neutral-400">Both files encode only https://malonespub.com/pool-tournament.</p><div className="mt-3 flex flex-wrap gap-2"><a href={`/api/admin/pool-tournaments/${tournament.id}/qr/svg`} className="rounded-lg bg-white px-4 py-2 text-sm font-black text-neutral-950">Download print SVG</a><a href={`/api/admin/pool-tournaments/${tournament.id}/qr/png`} className="rounded-lg border border-white/20 px-4 py-2 text-sm font-bold">Download 1600px PNG</a></div></div> : null}
+
+              {tournament.bracket ? (
+                <details open className="mt-6 rounded-xl border border-green-300/20 p-2">
+                  <summary className="cursor-pointer p-3 font-black text-green-200">Tournament bracket and scores</summary>
+                  <p className="px-4 py-2 text-sm text-neutral-400">The draw is saved. Score corrections clear later results if the players change.</p>
+                  <PoolTournamentBracket bracket={publicBracket(tournament.bracket)} onSave={tournament.status !== "Archived" ? (matchId, a, b) => saveMatch(tournament, matchId, a, b) : undefined} />
+                </details>
+              ) : tournament.isActivePublic && tournament.status !== "Archived" && tournament.status !== "Completed" ? (
+                <div className="mt-6 rounded-xl border border-green-300/20 bg-green-950/15 p-5">
+                  <h3 className="font-black text-green-200">Tournament bracket</h3>
+                  <p className="mt-2 text-sm leading-6 text-neutral-300">Draw all 16 registered players into first-round matchups using the original double-elimination bracket. This closes signup and publishes the saved draw on the pool page.</p>
+                  <button type="button" disabled={drawing || tournament.maxPlayers !== 16 || entries.filter((entry) => entry.status === "Registered").length !== 16} onClick={() => drawBracket(tournament.id)} className="mt-4 rounded-lg bg-green-500 px-4 py-3 text-sm font-black text-neutral-950 disabled:cursor-not-allowed disabled:opacity-40">{drawing ? "Drawing…" : "Draw first-round matchups"}</button>
+                </div>
+              ) : null}
 
               <details className="mt-6 rounded-xl border border-white/10 bg-black/20 p-4"><summary className="cursor-pointer font-black">Registrations ({entries.length})</summary>
                 <form onSubmit={(event) => addPlayer(event, tournament.id)} className="mt-5 grid gap-3 md:grid-cols-4"><input name="name" required placeholder="Player name" className={field} /><input name="phone" type="tel" required placeholder="Cell phone" className={field} /><input name="email" type="email" required placeholder="Email" className={field} /><button className="self-end rounded-lg bg-green-500 px-4 py-2.5 font-black text-neutral-950">Add player</button></form>
