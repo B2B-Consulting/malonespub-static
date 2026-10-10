@@ -19,10 +19,6 @@ export const BUSINESS = {
   googleReviewUrl: "https://www.google.com/search?q=Malone%27s+Pub+Fort+Worth+TX+reviews",
   description:
     "Downtown Fort Worth Irish pub and neighborhood dive bar with Guinness, pool, darts, Golden Tee, Big Lebowski pinball, jukebox, and bar food.",
-  hours: {
-    weekday: "Mon-Fri: 3pm-2am",
-    weekend: "Sat-Sun: 2pm-2am",
-  },
 } as const;
 
 export const mainImages = {

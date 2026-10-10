@@ -1,4 +1,5 @@
 import site from "@/content/site.json";
+import { getHoursForDate } from "@/lib/hours";
 
 export type OpenState = "open" | "open-soon" | "closed";
 
@@ -91,7 +92,7 @@ function getDayKey(date: string): DayKey {
 
 function getRegularWindowForDate(date: string) {
   const dayKey = getDayKey(date);
-  const hours = site.hours[dayKey];
+  const hours = getHoursForDate(date)[dayKey];
   if (!hours) return null;
 
   const openTime = toMalonesDateTime(date, hours.open);

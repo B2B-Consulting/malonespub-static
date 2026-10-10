@@ -1,6 +1,9 @@
 import { BUSINESS } from "@/lib/business";
+import { formatHoursLines, getHoursForDate, getHoursNote } from "@/lib/hours";
 
 export default function LocalBusinessCard() {
+  const lines = formatHoursLines(getHoursForDate());
+  const hoursNote = getHoursNote();
   return (
     <div className="rounded-lg border border-white/10 bg-black/35 p-5">
       <h2 className="text-2xl font-black text-white">Visit Malone&apos;s Pub</h2>
@@ -14,8 +17,8 @@ export default function LocalBusinessCard() {
             {BUSINESS.phone}
           </a>
         </p>
-        <p>{BUSINESS.hours.weekday}</p>
-        <p>{BUSINESS.hours.weekend}</p>
+        {lines.map((line) => <p key={line}>{line}</p>)}
+        {hoursNote && <p>{hoursNote}</p>}
         <p>Free street parking near Sundance Square and Downtown Fort Worth.</p>
       </div>
       <div className="mt-5 flex flex-col gap-2 sm:flex-row">

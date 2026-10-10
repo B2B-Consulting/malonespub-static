@@ -1,19 +1,23 @@
 import Link from "next/link";
 import { BUSINESS } from "@/lib/business";
+import { formatHoursLines, getHoursForDate, getHoursNote } from "@/lib/hours";
 
 export default function CallToActionBar({
   label = "Come by Malone's Pub",
 }: {
   label?: string;
 }) {
+  const lines = formatHoursLines(getHoursForDate());
+  const hoursNote = getHoursNote();
   return (
     <div className="rounded-lg border border-white/10 bg-neutral-900/70 p-5">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <div className="text-lg font-black text-white">{label}</div>
           <div className="mt-1 text-sm text-neutral-400">
-            {BUSINESS.address.formatted} - {BUSINESS.hours.weekday} / {BUSINESS.hours.weekend}
+            {BUSINESS.address.formatted} - {lines.join(" / ")}
           </div>
+          {hoursNote && <p className="mt-1 text-sm text-neutral-400">{hoursNote}</p>}
         </div>
         <div className="flex flex-col gap-2 sm:flex-row">
           <a

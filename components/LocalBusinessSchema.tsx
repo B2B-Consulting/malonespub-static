@@ -1,11 +1,12 @@
 import site from "@/content/site.json";
 import ratings from "@/content/ratings.json";
 import { BUSINESS, mainImages } from "@/lib/business";
+import { getHoursForDate, hasSeasonalHours } from "@/lib/hours";
 
-const openingHours = [
-  { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "15:00", closes: "02:00" },
-  { days: ["Saturday", "Sunday"], opens: "14:00", closes: "02:00" },
-];
+const dayNames = {
+  mon: "Monday", tue: "Tuesday", wed: "Wednesday", thu: "Thursday",
+  fri: "Friday", sat: "Saturday", sun: "Sunday",
+} as const;
 
 export default function LocalBusinessSchema({ siteUrl }: { siteUrl: string }) {
   const ratingValue =
@@ -57,11 +58,22 @@ export default function LocalBusinessSchema({ siteUrl }: { siteUrl: string }) {
       addressCountry: "US",
     },
     areaServed: "Fort Worth, TX",
-    openingHoursSpecification: openingHours.map((entry) => ({
+    openingHoursSpecification: Object.entries(getHoursForDate()).map(([day, hours]) => ({
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: entry.days,
-      opens: entry.opens,
-      closes: entry.closes,
+      dayOfWeek: dayNames[day as keyof typeof dayNames],
+      opens: hours.open,
+      closes: hours.close,
+      ...(hasSeasonalHours() && (day === "sat" || day === "sun")
+        ? { validFrom: site.seasonalHours.validFrom, validThrough: site.seasonalHours.validThrough }
+        : {}),
+    })),
+    specialOpeningHoursSpecification: Object.entries(site.seasonalHours.hours).map(([day, hours]) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: dayNames[day as keyof typeof dayNames],
+      opens: hours.open,
+      closes: hours.close,
+      validFrom: site.seasonalHours.validFrom,
+      validThrough: site.seasonalHours.validThrough,
     })),
     amenityFeature: [
       { "@type": "LocationFeatureSpecification", name: "Pool tables", value: true },

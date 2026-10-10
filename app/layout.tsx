@@ -8,6 +8,9 @@ import LocalBusinessSchema from "@/components/LocalBusinessSchema";
 
 const SITE_URL = "https://malonespub.com";
 
+// Refresh rendered hours so the dated weekend schedule expires automatically.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {

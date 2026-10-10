@@ -1,7 +1,7 @@
 import Link from "next/link";
 import ReviewButton from "@/components/ReviewButton";
 import site from "@/content/site.json";
-import { formatHoursLines } from "@/lib/hours";
+import { formatHoursLines, getHoursForDate, getHoursNote } from "@/lib/hours";
 
 const footerGroups = [
   {
@@ -35,7 +35,8 @@ const footerGroups = [
 ];
 
 export default function Footer() {
-  const lines = formatHoursLines(site.hours);
+  const lines = formatHoursLines(getHoursForDate());
+  const hoursNote = getHoursNote();
 
   return (
     <footer className="border-t border-neutral-900">
@@ -47,6 +48,7 @@ export default function Footer() {
             <div>{site.address}</div>
             <div>{site.phone}</div>
             <div className="text-neutral-400">{lines.join(" / ")}</div>
+            {hoursNote && <div className="text-neutral-400">{hoursNote}</div>}
             <div className="pt-3">
               <ReviewButton />
             </div>

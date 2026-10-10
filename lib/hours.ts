@@ -1,3 +1,5 @@
+import site from "@/content/site.json";
+
 type DayKey = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
 export type Hours = Record<DayKey, { open: string; close: string }>;
 
@@ -12,6 +14,31 @@ const dayLabel: Record<DayKey, string> = {
   sat: "Sat",
   sun: "Sun",
 };
+
+export function getBusinessDate(now = new Date()) {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Chicago",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(now);
+  const part = (type: string) => parts.find((entry) => entry.type === type)!.value;
+  return `${part("year")}-${part("month")}-${part("day")}`;
+}
+
+export function hasSeasonalHours(date = getBusinessDate()) {
+  return date >= site.seasonalHours.validFrom && date <= site.seasonalHours.validThrough;
+}
+
+export function getHoursForDate(date = getBusinessDate()): Hours {
+  return hasSeasonalHours(date)
+    ? { ...site.hours, ...site.seasonalHours.hours }
+    : site.hours;
+}
+
+export function getHoursNote(date = getBusinessDate()) {
+  return hasSeasonalHours(date) ? site.seasonalHours.note : null;
+}
 
 export function formatTime(t: string) {
   const [hh, mm] = t.split(":").map(Number);

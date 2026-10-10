@@ -6,7 +6,7 @@ import ReviewButton from "@/components/ReviewButton";
 import SeoFaq from "@/components/SeoFaq";
 import site from "@/content/site.json";
 import { BUSINESS, SITE_URL } from "@/lib/business";
-import { formatHoursLines } from "@/lib/hours";
+import { formatHoursLines, getHoursForDate, getHoursNote } from "@/lib/hours";
 
 export const metadata: Metadata = {
   title: "Contact & Hours",
@@ -44,7 +44,8 @@ const contactFaqs = [
 ];
 
 export default function ContactPage() {
-  const hoursLines = formatHoursLines(site.hours);
+  const hoursLines = formatHoursLines(getHoursForDate());
+  const hoursNote = getHoursNote();
   const tel = `tel:${site.phone.replace(/[^\d+]/g, "")}`;
 
   return (
@@ -65,6 +66,7 @@ export default function ContactPage() {
               {hoursLines.map((line) => (
                 <div key={line}>{line}</div>
               ))}
+              {hoursNote && <p className="mt-2">{hoursNote}</p>}
             </div>
 
             <div className="mt-5 flex flex-wrap gap-3">
