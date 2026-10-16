@@ -5,6 +5,7 @@ import LocalBusinessCard from "@/components/LocalBusinessCard";
 import InternalLinkGrid from "@/components/InternalLinkGrid";
 import CallToActionBar from "@/components/CallToActionBar";
 import SeoFaq from "@/components/SeoFaq";
+import FortWorthWeeklyRecognition from "@/components/FortWorthWeeklyRecognition";
 import { BUSINESS, mainImages, SITE_URL } from "@/lib/business";
 
 export const metadata: Metadata = {
@@ -84,6 +85,8 @@ export default function AboutPage() {
         </div>
         <LocalBusinessCard />
       </section>
+
+      <FortWorthWeeklyRecognition variant="about" />
 
       <CallToActionBar label="Visit Malone's Pub in Downtown Fort Worth" />
       <SeoFaq faqs={faqs} title="About Malone's FAQ" pageUrl={`${SITE_URL}/about`} />

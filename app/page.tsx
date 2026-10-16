@@ -4,6 +4,7 @@ import Section from "@/components/Section";
 import ButtonLink from "@/components/ButtonLink";
 import OpenStatus from "@/components/OpenStatus";
 import Ratings from "@/components/Ratings";
+import FortWorthWeeklyRecognition from "@/components/FortWorthWeeklyRecognition";
 import ReviewButton from "@/components/ReviewButton";
 import SeoFaq from "@/components/SeoFaq";
 import site from "@/content/site.json";
@@ -113,6 +114,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <FortWorthWeeklyRecognition />
 
       <Ratings />
 
