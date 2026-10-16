@@ -8,7 +8,7 @@ import FortWorthWeeklyRecognition from "@/components/FortWorthWeeklyRecognition"
 import ReviewButton from "@/components/ReviewButton";
 import SeoFaq from "@/components/SeoFaq";
 import site from "@/content/site.json";
-import { SITE_URL } from "@/lib/business";
+import { mainImages, SITE_URL } from "@/lib/business";
 import wordmark from "@/public/images/brand/malones-pub-wordmark-white.png";
 
 export const metadata: Metadata = {
@@ -61,11 +61,12 @@ export default function Home() {
       <div className="relative border-b border-neutral-900">
         <div className="relative h-[600px] w-full overflow-hidden">
           <Image
-            src="/photos/hero.webp"
-            alt="Malone's Pub exterior sign in Downtown Fort Worth"
+            src={mainImages.interior}
+            alt="Interior of Malone's Pub in Downtown Fort Worth"
             fill
-            priority
-            className="scale-105 object-cover object-top"
+            sizes="100vw"
+            preload
+            className="scale-105 object-cover object-center"
           />
 
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
