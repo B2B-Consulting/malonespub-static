@@ -8,6 +8,7 @@ import ReviewButton from "@/components/ReviewButton";
 import SeoFaq from "@/components/SeoFaq";
 import site from "@/content/site.json";
 import { SITE_URL } from "@/lib/business";
+import wordmark from "@/public/images/brand/malones-pub-wordmark-white.png";
 
 export const metadata: Metadata = {
   title: {
@@ -69,8 +70,15 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
 
           <div className="absolute inset-0 flex flex-col items-center justify-center px-4 pt-24 text-center md:pt-28">
-            <h1 className="text-5xl font-extrabold tracking-tight md:text-7xl">
-              {site.name}
+            <h1 className="w-full max-w-80 md:max-w-[480px]">
+              <span className="sr-only">{site.name}</span>
+              <Image
+                src={wordmark}
+                alt=""
+                className="block h-auto w-full"
+                loading="eager"
+                unoptimized
+              />
             </h1>
 
             <p className="mt-5 max-w-2xl text-xl text-neutral-300 md:text-2xl">
